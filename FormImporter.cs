@@ -41,6 +41,7 @@ namespace Bacchus
                     // Récupère le chemin d'accès au fichier
                     string path = ofd.FileName;
                     csvController = new CsvController(path);
+                    csvController.Read();
 
                     using (StreamReader sr = File.OpenText(path));
                     {

@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
 
@@ -19,12 +15,14 @@ namespace Bacchus
         {
             this.path = path;
             this.writeMode = 0;
+            this.data = new List<String[]>();
         }
 
         public CsvController(String path, int writeMode)
         {
             this.path = path;
             this.writeMode = writeMode;
+            this.data = new List<String[]>();
         }
 
         public void SetWriteMode(int writeMode)
@@ -49,6 +47,7 @@ namespace Bacchus
                 {
                     // Read current line fields, pointer moves to the next line.
                     string[] fields = csvParser.ReadFields();
+                    data.Add(fields);
                 }
             }
         }
