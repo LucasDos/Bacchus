@@ -9,15 +9,16 @@ namespace Bacchus.DAO
 {
     class Bacchus
     {
-        private static SQLiteConnection NewConnexion;
+        private static SQLiteConnection db;
 
         /// <summary>
         /// Ouvre une connexion a la BDD
         /// </summary>
         /// <param name="FileName"> Chemin d'acces a la BDD </param>
-        public static void OpenNewConnexion(String FileName)
+        public static void OpenNewConnexion(String fileName)
         {
-            NewConnexion = new SQLiteConnection("Data Source = " + FileName);
+            db = new SQLiteConnection($"Filename={fileName}");
+            db.Open();
         }
 
         /// <summary>
@@ -25,7 +26,7 @@ namespace Bacchus.DAO
         /// </summary>
         public static void CloseNewConnexion()
         {
-            NewConnexion.Close();
+            db.Close();
         }
     }
 }
