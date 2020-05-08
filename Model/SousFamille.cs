@@ -10,7 +10,7 @@ namespace Bacchus.Model
     {
         public int RefSousFamille { get; set; }
         public Famille RefFamille { get; set; }
-        public string nom { get; set; }
+        public string Nom { get; set; }
 
         /// <summary>
         /// Constructeur par defaut
@@ -19,7 +19,7 @@ namespace Bacchus.Model
         {
             this.RefSousFamille = 0;
             this.RefFamille = new Famille();
-            this.nom = "";
+            this.Nom = "";
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Bacchus.Model
         {
             this.RefSousFamille = RefSousFamille;
             this.RefFamille = RefFamille;
-            this.nom = Nom;
+            this.Nom = Nom;
         }
     }
 }

@@ -46,7 +46,5 @@ namespace Bacchus.Model
             this.Prix = Prix;
             this.Quantite = Quantite;
         }
-
-
     }
 }
