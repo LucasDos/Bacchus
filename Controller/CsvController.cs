@@ -13,6 +13,7 @@ namespace Bacchus
     {
         private String path;
         private int writeMode;
+        private List<String[]> data;
 
         public CsvController(String path)
         {
@@ -31,9 +32,25 @@ namespace Bacchus
             this.writeMode = writeMode;
         }
 
-        public int Read()
+        public void Read()
         {
             // https://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
+
+            using (TextFieldParser csvParser = new TextFieldParser(path))
+            {
+                csvParser.CommentTokens = new string[] { "#" };
+                csvParser.SetDelimiters(new string[] { ";" });
+                csvParser.HasFieldsEnclosedInQuotes = false;
+
+                // Skip the row with the column names
+                csvParser.ReadLine();
+
+                while (!csvParser.EndOfData)
+                {
+                    // Read current line fields, pointer moves to the next line.
+                    string[] fields = csvParser.ReadFields();
+                }
+            }
         }
     }
 }
