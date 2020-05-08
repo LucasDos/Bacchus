@@ -13,9 +13,12 @@ namespace Bacchus
 {
     public partial class FormImporter : Form
     {
+        private CsvController csvController;
+
         public FormImporter()
         {
             InitializeComponent();
+            csvController = null;
         }
 
         /// <summary>
@@ -37,6 +40,7 @@ namespace Bacchus
                 {
                     // Récupère le chemin d'accès au fichier
                     string path = ofd.FileName;
+                    csvController = new CsvController(path);
 
                     using (StreamReader sr = File.OpenText(path));
                     {
