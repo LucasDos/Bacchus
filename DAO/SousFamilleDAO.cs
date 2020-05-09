@@ -20,7 +20,7 @@ namespace Bacchus.DAO
                     reference = getFamilleRef(sousFamille);
                 }
 
-                Database.RunSql("insert into SousFamilles(RefFamille, Nom) values(" + reference + ", '" + sousFamille.Nom + "');");
+                Database.RunSql("insert into SousFamilles('RefFamille', 'Nom') values(" + reference + ", '" + sousFamille.Nom + "');");
 
                 SQLiteDataReader added = Database.GetSql("select max(RefSousFamille) from SousFamilles;");
 
@@ -34,7 +34,7 @@ namespace Bacchus.DAO
 
         public static SousFamille GetWhereName(String name)
         {
-            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where Nom = " + name);
+            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where Nom = '" + name + "';");
 
             if (sousFamille.Read())
             {

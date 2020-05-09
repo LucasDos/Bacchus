@@ -10,7 +10,7 @@ namespace Bacchus.DAO
 {
     class ArticleDAO
     {
-        public static int Insert(Article article)
+        public static String Insert(Article article)
         {
             if (article != null)
             {
@@ -32,16 +32,11 @@ namespace Bacchus.DAO
                     marqueReference = getMarqueRef(article);
                 }
 
-                Database.RunSql("insert into Article(Description, RefSousFamille, RefMarque, PrixHT, Quantite) values('" + article.Description + "', " + sousFamilleReference + ", " + marqueReference + ", " + article.Prix + ", " + article.Quantite + ");");
+                Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', " + sousFamilleReference + ", " + marqueReference + ", " + Convert.ToInt32(article.Prix) + ", " + article.Quantite + ");");
 
-                SQLiteDataReader added = Database.GetSql("select max(RefArticle) from Article;");
-
-                if (added.Read())
-                {
-                    return added.GetInt32(0);
-                }
+                return article.Reference;
             }
-            return 0;
+            return null;
         }
 
         public static int getSousFamilleRef(Article article)

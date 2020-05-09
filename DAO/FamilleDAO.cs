@@ -14,7 +14,7 @@ namespace Bacchus.DAO
         {
             if (famille != null)
             {
-                Database.RunSql("insert into Famille(Nom) values('" + famille.Nom + "');");
+                Database.RunSql("insert into Familles('Nom') values('" + famille.Nom + "');");
                 SQLiteDataReader added = Database.GetSql("select max(RefFamille) from Familles;");
 
                 if (added.Read())
@@ -27,7 +27,7 @@ namespace Bacchus.DAO
 
         public static Famille GetWhereName(String name)
         {
-            SQLiteDataReader famille = Database.GetSql("select * from Marques where Nom = " + name);
+            SQLiteDataReader famille = Database.GetSql("select * from Familles where Nom = '" + name + "';");
 
             if (famille.Read())
             {

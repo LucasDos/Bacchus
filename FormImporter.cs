@@ -57,7 +57,10 @@ namespace Bacchus
 
         private void button_ajout_Click(object sender, EventArgs e)
         {
-            csvController.Write();
+            if(csvController != null)
+            {
+                csvController.Write();
+            }
         }
     }
 }

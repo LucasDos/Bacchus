@@ -10,13 +10,13 @@ namespace Bacchus.DAO
     class Database
     {
         private static SQLiteConnection db = null;
-        private static String fileName = "data/data.csv";
+        private static String fileName = "Bacchus.SQLite";
 
         public static void GetInstance()
         {
             if(db == null)
             {
-                db = new SQLiteConnection($"Filename={fileName}");
+                db = new SQLiteConnection($"Data Source={fileName}");
                 db.Open();
             }
         }
@@ -39,13 +39,13 @@ namespace Bacchus.DAO
                 GetInstance();
             }
             SQLiteCommand command = new SQLiteCommand(sql, db);
-            command.ExecuteReader();
+            command.ExecuteNonQuery();
         }
 
         /// <summary>
         /// Ferme la connexion a la BDD
         /// </summary>
-        public static void CloseNewConnexion()
+        public static void closeDb()
         {
             db.Close();
         }

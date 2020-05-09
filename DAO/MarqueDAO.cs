@@ -14,7 +14,7 @@ namespace Bacchus.DAO
         {
             if(marque != null)
             {
-                Database.RunSql("insert into Marques(Nom) values('" + marque.Nom + "');");
+                Database.RunSql("insert into Marques('Nom') values('" + marque.Nom + "');");
                 SQLiteDataReader added = Database.GetSql("select max(RefMarque) from Marques;");
 
                 if (added.Read())
@@ -27,7 +27,7 @@ namespace Bacchus.DAO
 
         public static Marque GetWhereName(String name)
         {
-            SQLiteDataReader marque = Database.GetSql("select * from Marques where Nom = " + name);
+            SQLiteDataReader marque = Database.GetSql("select * from Marques where Nom = '" + name + "';");
 
             if(marque.Read())
             {
