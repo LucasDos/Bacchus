@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Bacchus.DAO;
+using Bacchus.Model;
 using Microsoft.VisualBasic.FileIO;
 
 
@@ -9,20 +11,20 @@ namespace Bacchus
     {
         private String path;
         private int writeMode;
-        private List<String[]> data;
+        private List<Article> data;
 
         public CsvController(String path)
         {
             this.path = path;
             this.writeMode = 0;
-            this.data = new List<String[]>();
+            this.data = new List<Article>();
         }
 
         public CsvController(String path, int writeMode)
         {
             this.path = path;
             this.writeMode = writeMode;
-            this.data = new List<String[]>();
+            this.data = new List<Article>();
         }
 
         public void SetWriteMode(int writeMode)
@@ -47,8 +49,29 @@ namespace Bacchus
                 {
                     // Read current line fields, pointer moves to the next line.
                     string[] fields = csvParser.ReadFields();
-                    data.Add(fields);
+
+                    Marque marque = new Marque();
+                    marque.Nom = fields[2];
+
+                    Famille famille = new Famille();
+                    famille.Nom = fields[3];
+
+                    SousFamille sousFamille = new SousFamille();
+                    sousFamille.RefFamille = famille;
+                    sousFamille.Nom = fields[4];
+
+                    Article article = new Article(fields[1], fields[0], sousFamille, marque, Convert.ToDouble(fields[5]), 0);
+                    Console.WriteLine(article);
+                    data.Add(article);
                 }
+            }
+        }
+
+        public void Write()
+        {
+            foreach(Article article in data)
+            {
+                ArticleDAO.Insert(article);
             }
         }
     }

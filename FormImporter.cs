@@ -54,5 +54,13 @@ namespace Bacchus
                 }
             }
         }
+
+        private void button_ajout_Click(object sender, EventArgs e)
+        {
+            if(csvController != null)
+            {
+                csvController.Write();
+            }
+        }
     }
 }
