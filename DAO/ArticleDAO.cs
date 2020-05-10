@@ -32,7 +32,16 @@ namespace Bacchus.DAO
                     marqueReference = getMarqueRef(article);
                 }
 
-                Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', " + sousFamilleReference + ", " + marqueReference + ", " + Convert.ToInt32(article.Prix) + ", " + article.Quantite + ");");
+                SQLiteDataReader exists = Database.GetSql("select * from Articles where RefArticle = '" + article.Reference + "';");
+
+                if(!exists.Read())
+                {
+                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', " + sousFamilleReference + ", " + marqueReference + ", " + Convert.ToInt32(article.Prix) + ", " + article.Quantite + ");");
+                }
+                else
+                {
+                    Database.RunSql("update Articles set Description = '" + article.Description + "', RefSousFamille = " + sousFamilleReference + ", RefMarque = " + marqueReference + ", PrixHT = " + Convert.ToInt32(article.Prix) + ", Quantite = " + article.Quantite + " where RefArticle = '" + article.Reference + "';");
+                }
 
                 return article.Reference;
             }
