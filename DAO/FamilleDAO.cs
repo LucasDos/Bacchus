@@ -10,6 +10,19 @@ namespace Bacchus.DAO
 {
     class FamilleDAO
     {
+        public static List<Famille> GetAll()
+        {
+            SQLiteDataReader famille = Database.GetSql("select * from Familles;");
+
+            List<Famille> list = new List<Famille>();
+            while (famille.Read())
+            {
+                Famille familleObj = new Famille(famille.GetInt32(0), famille.GetString(1));
+                list.Add(familleObj);
+            }
+            return list;
+        }
+
         public static int Insert(Famille famille)
         {
             if (famille != null)

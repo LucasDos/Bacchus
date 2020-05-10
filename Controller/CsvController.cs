@@ -59,7 +59,7 @@ namespace Bacchus
                     sousFamille.Nom = fields[4];
 
                     Article article = new Article(fields[1], fields[0], sousFamille, marque, Convert.ToDouble(fields[5]), 0);
-                    Console.WriteLine(article);
+                    
                     data.Add(article);
 
                     count++;

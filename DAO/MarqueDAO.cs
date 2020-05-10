@@ -10,6 +10,18 @@ namespace Bacchus.DAO
 {
     class MarqueDAO
     {
+        public static List<Marque> GetAll()
+        {
+            SQLiteDataReader marque = Database.GetSql("select * from Marques;");
+
+            List<Marque> list = new List<Marque>();
+            while (marque.Read())
+            {
+                list.Add(new Marque(marque.GetInt32(0), marque.GetString(1)));
+            }
+            return list;
+        }
+
         public static int Insert(Marque marque)
         {
             if(marque != null)
