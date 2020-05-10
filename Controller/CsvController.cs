@@ -10,26 +10,12 @@ namespace Bacchus
     class CsvController
     {
         private String path;
-        private int writeMode;
         private List<Article> data;
 
         public CsvController(String path)
         {
             this.path = path;
-            this.writeMode = 0;
             this.data = new List<Article>();
-        }
-
-        public CsvController(String path, int writeMode)
-        {
-            this.path = path;
-            this.writeMode = writeMode;
-            this.data = new List<Article>();
-        }
-
-        public void SetWriteMode(int writeMode)
-        {
-            this.writeMode = writeMode;
         }
 
         public void Read()
@@ -67,7 +53,7 @@ namespace Bacchus
             }
         }
 
-        public void Write()
+        public void SaveInDb()
         {
             foreach(Article article in data)
             {

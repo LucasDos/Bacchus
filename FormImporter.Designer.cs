@@ -41,7 +41,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(9, 10);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(268, 24);
             this.button1.TabIndex = 6;
@@ -72,17 +72,18 @@
             // button_ecrase
             // 
             this.button_ecrase.Location = new System.Drawing.Point(0, 42);
-            this.button_ecrase.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_ecrase.Margin = new System.Windows.Forms.Padding(2);
             this.button_ecrase.Name = "button_ecrase";
             this.button_ecrase.Size = new System.Drawing.Size(268, 24);
             this.button_ecrase.TabIndex = 9;
             this.button_ecrase.Text = "Mode Ecrasement";
             this.button_ecrase.UseVisualStyleBackColor = true;
+            this.button_ecrase.Click += new System.EventHandler(this.button_ecrase_Click);
             // 
             // button_ajout
             // 
             this.button_ajout.Location = new System.Drawing.Point(0, 89);
-            this.button_ajout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_ajout.Margin = new System.Windows.Forms.Padding(2);
             this.button_ajout.Name = "button_ajout";
             this.button_ajout.Size = new System.Drawing.Size(268, 24);
             this.button_ajout.TabIndex = 10;
@@ -93,7 +94,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(9, 258);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(268, 19);
             this.progressBar1.TabIndex = 11;
@@ -103,9 +104,9 @@
             this.groupBox1.Controls.Add(this.button_ajout);
             this.groupBox1.Controls.Add(this.button_ecrase);
             this.groupBox1.Location = new System.Drawing.Point(9, 76);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(268, 139);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
@@ -121,7 +122,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.progressBar1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormImporter";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Importer fichier csv";

@@ -11,6 +11,7 @@ namespace Bacchus.DAO
     {
         private static SQLiteConnection db = null;
         private static String fileName = "Bacchus.SQLite";
+        private static String[] tables = new String[]{"Articles", "Familles", "Marques", "SousFamilles"};
 
         public static void GetInstance()
         {
@@ -40,6 +41,15 @@ namespace Bacchus.DAO
             }
             SQLiteCommand command = new SQLiteCommand(sql, db);
             command.ExecuteNonQuery();
+        }
+
+        public static void Empty()
+        {
+            foreach (String table in tables)
+            {
+                RunSql("delete from '" + table + "';");
+                RunSql("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='" + table + "';");
+            }
         }
 
         /// <summary>

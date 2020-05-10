@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bacchus.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,7 +60,16 @@ namespace Bacchus
         {
             if(csvController != null)
             {
-                csvController.Write();
+                csvController.SaveInDb();
+            }
+        }
+
+        private void button_ecrase_Click(object sender, EventArgs e)
+        {
+            if (csvController != null)
+            {
+                Database.Empty();
+                csvController.SaveInDb();
             }
         }
     }
