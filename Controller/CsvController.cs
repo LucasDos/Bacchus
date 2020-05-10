@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Bacchus.DAO;
 using Bacchus.Model;
 using Microsoft.VisualBasic.FileIO;
@@ -11,11 +12,21 @@ namespace Bacchus
     {
         private String path;
         private List<Article> data;
+        private ProgressBar progressBar = null;
 
         public CsvController(String path)
         {
             this.path = path;
             this.data = new List<Article>();
+        }
+
+        public CsvController(String path, ProgressBar progressBar)
+        {
+            this.path = path;
+            this.data = new List<Article>();
+            this.progressBar = progressBar;
+            progressBar.Minimum = 0;
+            progressBar.Step = 1;
         }
 
         public void Read()
@@ -30,6 +41,7 @@ namespace Bacchus
 
                 // Skip the row with the column names
                 csvParser.ReadLine();
+                int count = 0;
 
                 while (!csvParser.EndOfData)
                 {
@@ -47,9 +59,13 @@ namespace Bacchus
                     sousFamille.Nom = fields[4];
 
                     Article article = new Article(fields[1], fields[0], sousFamille, marque, Convert.ToDouble(fields[5]), 0);
-                    Console.WriteLine(article);
+                    
                     data.Add(article);
+
+                    count++;
                 }
+
+                progressBar.Maximum = count;
             }
         }
 
@@ -58,6 +74,10 @@ namespace Bacchus
             foreach(Article article in data)
             {
                 ArticleDAO.Insert(article);
+                if(progressBar != null)
+                {
+                    progressBar.PerformStep();
+                }
             }
         }
     }

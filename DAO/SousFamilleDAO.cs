@@ -56,6 +56,18 @@ namespace Bacchus.DAO
             {
                 return FamilleDAO.Insert(sousFamille.RefFamille);
             }
-        } 
+        }
+
+        public static List<SousFamille> GetWhereFamille(int reference)
+        {
+            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefFamille = '" + reference + "';");
+
+            List<SousFamille> list = new List<SousFamille>();
+            while (sousFamille.Read())
+            {
+                list.Add(new SousFamille(sousFamille.GetInt32(0), new Famille(), sousFamille.GetString(2)));
+            }
+            return list;
+        }
     }
 }
