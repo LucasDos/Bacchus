@@ -25,9 +25,10 @@ namespace Bacchus
             formImpor.Show();
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        private void exporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FormExporter formExport = new FormExporter();
+            formExport.Show();
         }
     }
 }
