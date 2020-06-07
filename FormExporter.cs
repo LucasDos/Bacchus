@@ -1,14 +1,7 @@
 ﻿using Bacchus.DAO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SQLite;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Bacchus
@@ -20,21 +13,43 @@ namespace Bacchus
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void FormExporter_Load(object sender, EventArgs e)
         {
-            var filepath = "export.csv";
-            using (StreamWriter writer = new StreamWriter(new FileStream(filepath, FileMode.Create, FileAccess.Write)))
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
-                writer.WriteLine("Description;Ref;Marque;Famille;Sous-Famille;Prix H.T.");
-
-                SQLiteDataReader data = Database.GetSql("select Description, RefArticle, Marques.Nom, Familles.Nom, SousFamilles.Nom, PrixHT from Articles join Marques using(RefMarque) join SousFamilles using(RefSousFamille) join Familles using(RefFamille);");
-
-                while(data.Read())
+                // Ouvre un boite de dialogue pour choisir le dossier où enregistrer les données
+                if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    String line = data.GetString(0) + ";" + data.GetString(1) + ";" + data.GetString(2) + ";" + data.GetString(3) + ";" + data.GetString(4) + ";" + data.GetFloat(5);
-                    writer.WriteLine(line);
+                    // Récupère le chemin du dossier
+                    var folderPath = fbd.SelectedPath + "\\BacchusData.csv";
+
+                    using (StreamWriter writer = new StreamWriter(new FileStream(folderPath, FileMode.OpenOrCreate)))
+                    {
+                        writer.WriteLine("Description;Ref;Marque;Famille;Sous-Famille;Prix H.T.");
+
+                        SQLiteDataReader data = Database.GetSql("select Description, RefArticle, Marques.Nom, Familles.Nom, SousFamilles.Nom, PrixHT from Articles join Marques using(RefMarque) join SousFamilles using(RefSousFamille) join Familles using(RefFamille);");
+
+                        while (data.Read())
+                        {
+                            String line = data.GetString(0) + ";" + data.GetString(1) + ";" + data.GetString(2) + ";" + data.GetString(3) + ";" + data.GetString(4) + ";" + data.GetFloat(5);
+                            writer.WriteLine(line);
+                        }
+
+                        // Affiche le chemin du fichier selectionne
+                        folder_lbl.Text = folderPath;
+                    }
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
