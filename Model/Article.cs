@@ -10,6 +10,7 @@ namespace Bacchus.Model
     {
         public string Reference { get; set; }
         public string Description { get; set; }
+        public Famille Famille { get; set; }
         public SousFamille SousFamille { get; set; }
         public Marque Marque { get; set; }
         public double Prix { get; set; }

@@ -48,6 +48,28 @@ namespace Bacchus.DAO
             return null;
         }
 
+        public static List<Article> GetAll()
+        {
+            SQLiteDataReader article = Database.GetSql("select * from Article;");
+
+            List<Article> list = new List<Article>();
+            while (article.Read())
+            {
+                string reference = article.GetString(0);
+                string desc = article.GetString(1);
+                int refSFam = article.GetInt32(2);
+                int refMarque = article.GetInt32(3);
+                float prix = article.GetFloat(4);
+                int quantite = article.GetInt32(5);
+
+                SousFamille sfam = SousFamilleDAO.GetWhereRef(refSFam);
+                Marque marque = MarqueDAO.GetWhereRef(refMarque);
+
+                list.Add(new Article(reference, desc, sfam, marque, prix, quantite));
+            }
+
+            return list;
+        }
         public static int getSousFamilleRef(Article article)
         {
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(article.SousFamille.Nom);

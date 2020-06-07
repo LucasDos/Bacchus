@@ -43,6 +43,18 @@ namespace Bacchus.DAO
             return null;
         }
 
+        public static SousFamille GetWhereRef(int reference)
+        {
+            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefSousFamille = '" + reference + "';");
+
+            if (sousFamille.Read())
+            {
+                Famille fam = FamilleDAO.GetWhereRef(sousFamille.GetInt32(1));
+                return new SousFamille(sousFamille.GetInt32(0), fam, sousFamille.GetString(2));
+            }
+            return null;
+        }
+
         private static int getFamilleRef(SousFamille sousFamille)
         {
             Famille famille = FamilleDAO.GetWhereName(sousFamille.RefFamille.Nom);
@@ -69,5 +81,7 @@ namespace Bacchus.DAO
             }
             return list;
         }
+
+        
     }
 }

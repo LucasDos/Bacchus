@@ -22,7 +22,7 @@ namespace Bacchus
             InitializeTreeView();
         }
 
-        private void InitializeTreeView()
+        public void InitializeTreeView()
         {
             
             treeView1.BeginUpdate();
@@ -38,7 +38,7 @@ namespace Bacchus
             treeView1.EndUpdate();
         }
 
-        private void addFamilles(TreeNode node)
+        public void addFamilles(TreeNode node)
         {
             List<Famille> familles = FamilleDAO.GetAll();
 
@@ -55,7 +55,7 @@ namespace Bacchus
             }
         }
 
-        private void addMarques(TreeNode node)
+        public void addMarques(TreeNode node)
         {
             List<Marque> marques = MarqueDAO.GetAll();
 
@@ -65,17 +65,58 @@ namespace Bacchus
             }
         }
 
-        private void importerToolStripMenuItem_Click(object sender, EventArgs e)
+        public void importerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormImporter formImpor = new FormImporter();
             formImpor.ShowDialog();
             InitializeTreeView();
         }
 
-        private void exporterToolStripMenuItem_Click(object sender, EventArgs e)
+        public void exporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormExporter formExport = new FormExporter();
             formExport.Show();
+        }
+
+        public void UpdateListView()
+        {
+            Console.WriteLine(treeView1.SelectedNode.Index);
+
+            listView1.Clear();
+
+            if (treeView1.SelectedNode.Index == 0)
+            {
+                listView1.Name = "ArticleListe";
+
+                listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+                listView1.Columns.Add("Familles", -2, HorizontalAlignment.Center);
+                listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Center);
+                listView1.Columns.Add("Marque", -2, HorizontalAlignment.Center);
+                listView1.Columns.Add("Quantité", -2, HorizontalAlignment.Center);
+
+                List<Article> articles = ArticleDAO.GetAll();
+                foreach (Article article in articles)
+                {
+                    var row = new string[]
+                    {
+                                article.Description, article.Famille.Nom,
+                                article.SousFamille.Nom, article.Marque.Nom,
+                                article.Quantite.ToString()
+                    };
+
+                    var lvi = new ListViewItem(row);
+                    lvi.Tag = article;
+                    listView1.Items.Add(lvi);
+                }
+            }
+            else
+            {
+                listView1.Name = "OtherList";
+
+                listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+
+                
+            }
         }
     }
 }
