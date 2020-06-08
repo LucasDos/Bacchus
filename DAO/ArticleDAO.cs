@@ -198,5 +198,22 @@ namespace Bacchus.DAO
         {
             SQLiteDataReader res = Database.GetSql("delete from Articles where RefArticle='" + article.Reference + "';");
         }
+
+        /// <summary>
+        /// Modifie un article existant
+        /// </summary>
+        /// <param name="article">Article à modifier</param>
+        public static void modifyArticle(Article article)
+        {
+            SQLiteDataReader res = Database.GetSql("update Articles set " +
+                "Description='" + article.Description + "', " +
+                "RefSousFamille='" + article.SousFamille.RefSousFamille + "', " +
+                "RefMarque='" + article.Marque.Reference + "', " +
+                "PrixHT='" + article.Prix + "', " +
+                "Quantite='" + article.Quantite + "'" +
+                "where Reference='" + article.Reference + "'" +
+                ";");
+
+        }
     }
 }

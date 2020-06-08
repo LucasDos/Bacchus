@@ -39,15 +39,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.description_input = new System.Windows.Forms.RichTextBox();
-            this.reference_input = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.reference_label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quantite_input)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.reference_label);
             this.panel1.Controls.Add(this.valider_btn);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
@@ -58,7 +59,6 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.description_input);
-            this.panel1.Controls.Add(this.reference_input);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -156,13 +156,6 @@
             this.description_input.TabIndex = 3;
             this.description_input.Text = "";
             // 
-            // reference_input
-            // 
-            this.reference_input.Location = new System.Drawing.Point(105, 47);
-            this.reference_input.Name = "reference_input";
-            this.reference_input.Size = new System.Drawing.Size(265, 22);
-            this.reference_input.TabIndex = 2;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -183,6 +176,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Ajouter un article";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // reference_label
+            // 
+            this.reference_label.AutoSize = true;
+            this.reference_label.Location = new System.Drawing.Point(119, 51);
+            this.reference_label.Name = "reference_label";
+            this.reference_label.Size = new System.Drawing.Size(0, 17);
+            this.reference_label.TabIndex = 13;
             // 
             // FormModifArticle
             // 
@@ -213,8 +214,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.RichTextBox description_input;
-        private System.Windows.Forms.TextBox reference_input;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label reference_label;
     }
 }

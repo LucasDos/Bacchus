@@ -21,16 +21,26 @@ namespace Bacchus
 
         public void InitializeDataComponent(Article article)
         {
-            reference_input.Text = article.Reference;
+            reference_label.Text = article.Reference;
             description_input.Text = article.Description;
             prix_input.Text = article.Prix.ToString();
             quantite_input.Value = article.Quantite;
 
             sousfamille_cbx.Text = article.SousFamille.Nom;
-            SousFamilleDAO.getAll();
-            //sousfamille_cbx.Items.Add
-            marque_cbx.Text = article.Marque.Nom;
+            // Rempli la comobox de toutes les Sous Familles
+            List<SousFamille> souFamilles = SousFamilleDAO.getAll();
+            foreach(SousFamille sf in souFamilles)
+            {
+                sousfamille_cbx.Items.Add(sf.Nom);
+            }
 
+
+            marque_cbx.Text = article.Marque.Nom;
+            List<Marque> marques = MarqueDAO.GetAll();
+            foreach(Marque marque in marques)
+            {
+                marque_cbx.Items.Add(marque.Nom);
+            }
         }
 
         private void valider_btn_Click(object sender, EventArgs e)
@@ -40,8 +50,8 @@ namespace Bacchus
             double prix = Convert.ToDouble(prix_input.Text);
             int quantite = Convert.ToInt32(quantite_input.Value);
             
-
-            Article article = new Article(reference_input.Text, description_input.Text, sousFamille, marque, prix, quantite);
+            Article article = new Article(reference_label.Text, description_input.Text, sousFamille, marque, prix, quantite);
+            ArticleDAO.modifyArticle(article);
         }
     }
 }
