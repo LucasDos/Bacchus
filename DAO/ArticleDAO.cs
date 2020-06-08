@@ -205,6 +205,7 @@ namespace Bacchus.DAO
         /// <param name="article">Article à modifier</param>
         public static void modifyArticle(Article article)
         {
+            // Bug
             SQLiteDataReader res = Database.GetSql("update Articles set " +
                 "Description='" + article.Description + "', " +
                 "RefSousFamille='" + article.SousFamille.RefSousFamille + "', " +
