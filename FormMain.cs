@@ -240,8 +240,7 @@ namespace Bacchus
         {
             if(e.KeyCode == Keys.Enter)
             {
-                FormAddArticle formAdd = new FormAddArticle();
-                formAdd.ShowDialog();
+                
             }
         }
     }
