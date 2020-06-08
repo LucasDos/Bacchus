@@ -119,7 +119,7 @@ namespace Bacchus
 
                         Famille famille = FamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
 
-                        if(famille != null)
+                        if (famille != null)
                         {
                             List<SousFamille> sousFamilles = SousFamilleDAO.GetWhereFamilleByRef(famille);
 
@@ -147,10 +147,7 @@ namespace Bacchus
                                     listView1.Items.Add(lvi);
                                 }
                             }
-
-                            
-                        }
-                        
+                        }                        
                         break;
                     case "Marques":
                         // Affichage de tous les articles d'une marque 
@@ -172,6 +169,35 @@ namespace Bacchus
                             lvi.Tag = indexArticles;
                             listView1.Items.Add(lvi);
                         }
+                        break;
+                    default:
+                        // Affichage par sous familles
+                        listView1.Name = "DescriptionByMarques";
+                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
+
+                        SousFamille sousFamille = SousFamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+                        
+                        if(sousFamille != null)
+                        {
+                            articles = ArticleDAO.getArticleBySousFamille(sousFamille);
+
+                            foreach (Article indexArticles in articles)
+                            {
+                                var row = new string[]
+                                {
+                                    indexArticles.Description, indexArticles.SousFamille.Nom,
+                                    indexArticles.Marque.Nom, indexArticles.Quantite.ToString()
+                                };
+
+                                var lvi = new ListViewItem(row);
+                                lvi.Tag = indexArticles;
+                                listView1.Items.Add(lvi);
+                            }
+                        }
+
                         break;
                 }
             }
