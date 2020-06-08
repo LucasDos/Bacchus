@@ -193,5 +193,10 @@ namespace Bacchus.DAO
             return null;
 
         }
+    
+        public static void removeArticle(Article article)
+        {
+            SQLiteDataReader res = Database.GetSql("delete from Articles where RefArticle='" + article.Reference + "';");
+        }
     }
 }

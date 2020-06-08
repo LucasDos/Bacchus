@@ -257,8 +257,26 @@ namespace Bacchus
         public void removeOption()
         {
             var descriptionItem = listView1.SelectedItems[0];
-            Console.WriteLine(descriptionItem.Text);
-            
+            var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + descriptionItem + @" ?",
+                    @"Suppression d'un article", MessageBoxButtons.YesNo);
+
+            // Annule la suppression si "non" 
+            if (validationMessage != DialogResult.Yes) 
+            { 
+                return; 
+            }
+
+            // Récupère l'article selectionné dans la BDD
+            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
+            if (article == null)
+            {
+                MessageBox.Show("L'article n'existe pas");
+                return;
+            }
+
+            ArticleDAO.removeArticle(article);
+
+
         }
 
         public void modifyOption()
