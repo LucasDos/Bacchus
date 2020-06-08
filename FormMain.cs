@@ -249,12 +249,15 @@ namespace Bacchus
                     break;
                 case Keys.Delete:
                     // TODO : Suppr Item
-                    removeOption();
+                    removeArticle();
                     break;
             }
         }
 
-        public void removeOption()
+        /// <summary>
+        /// Supprimer l'article sélectionné
+        /// </summary>
+        public void removeArticle()
         {
             var descriptionItem = listView1.SelectedItems[0];
             var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + descriptionItem + @" ?",
@@ -275,8 +278,6 @@ namespace Bacchus
             }
 
             ArticleDAO.removeArticle(article);
-
-
         }
 
         public void modifyOption()
