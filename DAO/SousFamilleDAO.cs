@@ -10,6 +10,11 @@ namespace Bacchus.DAO
 {
     class SousFamilleDAO
     {
+        /// <summary>
+        /// Ajoute une SousFamille dans la BDD
+        /// </summary>
+        /// <param name="sousFamille">SousFamille à ajouter</param>
+        /// <returns>La référence de la SousFamille</returns>
         public static int Insert(SousFamille sousFamille)
         {
             if (sousFamille != null)
@@ -32,6 +37,11 @@ namespace Bacchus.DAO
             return 0;
         }
 
+        /// <summary>
+        /// Récupère une SousFamille par son nom
+        /// </summary>
+        /// <param name="name">Nom de la SousFamille</param>
+        /// <returns>La SousFamille</returns>
         public static SousFamille GetWhereName(String name)
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where Nom = '" + name + "';");
@@ -43,6 +53,11 @@ namespace Bacchus.DAO
             return null;
         }
 
+        /// <summary>
+        /// Récupère une SousFamille
+        /// </summary>
+        /// <param name="reference">La Référence de la SousFamille</param>
+        /// <returns>La SousFamille</returns>
         public static SousFamille GetWhereRef(int reference)
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefSousFamille = '" + reference + "';");
@@ -55,6 +70,11 @@ namespace Bacchus.DAO
             return null;
         }
 
+        /// <summary>
+        /// Récupère la Référence d'une SousFamille
+        /// </summary>
+        /// <param name="sousFamille">La SousFamille</param>
+        /// <returns>La SousFamille</returns>
         private static int getFamilleRef(SousFamille sousFamille)
         {
             Famille famille = FamilleDAO.GetWhereName(sousFamille.RefFamille.Nom);
@@ -70,6 +90,11 @@ namespace Bacchus.DAO
             }
         }
 
+        /// <summary>
+        /// Récupère toutes les SousFamilles d'une Famille
+        /// </summary>
+        /// <param name="famille">La Famille</param>
+        /// <returns>Liste des SousFamilles</returns>
         public static List<SousFamille> GetWhereFamilleByRef(Famille famille)
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefFamille = '" + famille.Reference + "';");

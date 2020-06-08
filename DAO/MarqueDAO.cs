@@ -10,6 +10,10 @@ namespace Bacchus.DAO
 {
     class MarqueDAO
     {
+        /// <summary>
+        /// Récupère toutes les Marques de la BDD
+        /// </summary>
+        /// <returns>Liste des Marques</returns>
         public static List<Marque> GetAll()
         {
             SQLiteDataReader marque = Database.GetSql("select * from Marques;");
@@ -22,6 +26,11 @@ namespace Bacchus.DAO
             return list;
         }
 
+        /// <summary>
+        /// Ajoute une Marque dans la BDD
+        /// </summary>
+        /// <param name="marque">Marque à ajouter</param>
+        /// <returns>La référence de la marque</returns>
         public static int Insert(Marque marque)
         {
             if(marque != null)
@@ -37,6 +46,11 @@ namespace Bacchus.DAO
             return 0;
         }
 
+        /// <summary>
+        /// Récupère une Marque avec son nom
+        /// </summary>
+        /// <param name="name">Nom de la marque</param>
+        /// <returns>La Marque</returns>
         public static Marque GetWhereName(String name)
         {
             SQLiteDataReader marque = Database.GetSql("select * from Marques where Nom = '" + name + "';");
@@ -48,6 +62,11 @@ namespace Bacchus.DAO
             return null;
         }
 
+        /// <summary>
+        /// Récupère une Marque avec sa référence
+        /// </summary>
+        /// <param name="reference">La Référence de la Marque</param>
+        /// <returns>La Marque</returns>
         public static Marque GetWhereRef(int reference)
         {
             SQLiteDataReader marque = Database.GetSql("select * from Marques where RefMarque = '" + reference + "';");
