@@ -59,6 +59,12 @@
     <Compile Include="DAO\FamilleDAO.cs" />
     <Compile Include="DAO\MarqueDAO.cs" />
     <Compile Include="DAO\SousFamilleDAO.cs" />
+    <Compile Include="FormAddArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddArticle.Designer.cs">
+      <DependentUpon>FormAddArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExporter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     <Compile Include="Model\Famille.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddArticle.resx">
+      <DependentUpon>FormAddArticle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExporter.resx">
       <DependentUpon>FormExporter.cs</DependentUpon>
     </EmbeddedResource>

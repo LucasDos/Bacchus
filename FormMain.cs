@@ -235,5 +235,14 @@ namespace Bacchus
         {
             UpdateListView();
         }
+
+        private void listView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                FormAddArticle formAdd = new FormAddArticle();
+                formAdd.ShowDialog();
+            }
+        }
     }
 }

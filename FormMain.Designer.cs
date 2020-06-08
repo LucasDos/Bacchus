@@ -55,7 +55,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(999, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(999, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -66,7 +66,7 @@
             this.importerToolStripMenuItem,
             this.exporterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 26);
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.fichierToolStripMenuItem.Text = "Fichier";
             // 
             // actualiserToolStripMenuItem
@@ -102,7 +102,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(5, 35);
+            this.splitContainer1.Location = new System.Drawing.Point(5, 33);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -116,7 +116,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer1.Size = new System.Drawing.Size(999, 514);
+            this.splitContainer1.Size = new System.Drawing.Size(999, 516);
             this.splitContainer1.SplitterDistance = 332;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -136,7 +136,7 @@
             treeNode1,
             treeNode2,
             treeNode3});
-            this.treeView1.Size = new System.Drawing.Size(326, 510);
+            this.treeView1.Size = new System.Drawing.Size(326, 512);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -149,10 +149,11 @@
             this.listView1.Location = new System.Drawing.Point(3, 2);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(657, 510);
+            this.listView1.Size = new System.Drawing.Size(657, 512);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyUp);
             // 
             // FormMain
             // 
