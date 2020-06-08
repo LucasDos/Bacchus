@@ -70,18 +70,19 @@
             // valider_btn
             // 
             this.valider_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.valider_btn.Location = new System.Drawing.Point(150, 318);
+            this.valider_btn.Location = new System.Drawing.Point(150, 307);
             this.valider_btn.Name = "valider_btn";
-            this.valider_btn.Size = new System.Drawing.Size(75, 25);
+            this.valider_btn.Size = new System.Drawing.Size(75, 30);
             this.valider_btn.TabIndex = 12;
             this.valider_btn.Text = "Valider";
             this.valider_btn.UseVisualStyleBackColor = true;
+            this.valider_btn.Click += new System.EventHandler(this.valider_btn_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label6.Location = new System.Drawing.Point(8, 265);
+            this.label6.Location = new System.Drawing.Point(8, 254);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(175, 18);
             this.label6.TabIndex = 11;
@@ -91,7 +92,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label5.Location = new System.Drawing.Point(8, 212);
+            this.label5.Location = new System.Drawing.Point(8, 201);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(211, 18);
             this.label5.TabIndex = 10;
@@ -100,7 +101,7 @@
             // marque_cbx
             // 
             this.marque_cbx.FormattingEnabled = true;
-            this.marque_cbx.Location = new System.Drawing.Point(11, 285);
+            this.marque_cbx.Location = new System.Drawing.Point(11, 274);
             this.marque_cbx.Name = "marque_cbx";
             this.marque_cbx.Size = new System.Drawing.Size(359, 24);
             this.marque_cbx.TabIndex = 9;
@@ -108,21 +109,21 @@
             // sousfamille_cbx
             // 
             this.sousfamille_cbx.FormattingEnabled = true;
-            this.sousfamille_cbx.Location = new System.Drawing.Point(11, 232);
+            this.sousfamille_cbx.Location = new System.Drawing.Point(11, 221);
             this.sousfamille_cbx.Name = "sousfamille_cbx";
             this.sousfamille_cbx.Size = new System.Drawing.Size(359, 24);
             this.sousfamille_cbx.TabIndex = 8;
             // 
             // quantite_input
             // 
-            this.quantite_input.Location = new System.Drawing.Point(287, 174);
+            this.quantite_input.Location = new System.Drawing.Point(287, 163);
             this.quantite_input.Name = "quantite_input";
             this.quantite_input.Size = new System.Drawing.Size(57, 22);
             this.quantite_input.TabIndex = 7;
             // 
             // prix_input
             // 
-            this.prix_input.Location = new System.Drawing.Point(11, 174);
+            this.prix_input.Location = new System.Drawing.Point(11, 163);
             this.prix_input.Name = "prix_input";
             this.prix_input.Size = new System.Drawing.Size(100, 22);
             this.prix_input.TabIndex = 6;
@@ -131,7 +132,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label4.Location = new System.Drawing.Point(273, 154);
+            this.label4.Location = new System.Drawing.Point(273, 143);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 18);
             this.label4.TabIndex = 5;
@@ -141,7 +142,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label3.Location = new System.Drawing.Point(39, 154);
+            this.label3.Location = new System.Drawing.Point(39, 143);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 18);
             this.label3.TabIndex = 4;
@@ -149,7 +150,7 @@
             // 
             // description_input
             // 
-            this.description_input.Location = new System.Drawing.Point(11, 97);
+            this.description_input.Location = new System.Drawing.Point(11, 86);
             this.description_input.Name = "description_input";
             this.description_input.Size = new System.Drawing.Size(359, 51);
             this.description_input.TabIndex = 3;
@@ -157,7 +158,7 @@
             // 
             // reference_input
             // 
-            this.reference_input.Location = new System.Drawing.Point(105, 58);
+            this.reference_input.Location = new System.Drawing.Point(105, 47);
             this.reference_input.Name = "reference_input";
             this.reference_input.Size = new System.Drawing.Size(265, 22);
             this.reference_input.TabIndex = 2;
@@ -166,7 +167,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label2.Location = new System.Drawing.Point(8, 60);
+            this.label2.Location = new System.Drawing.Point(8, 49);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 18);
             this.label2.TabIndex = 1;

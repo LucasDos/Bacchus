@@ -242,13 +242,12 @@ namespace Bacchus
             {
                 case Keys.Enter:
                     // TODO: Modifiy Artcile
-                    modifyOption();
+                    modifyArticle();
                     break;
                 case Keys.F5:
                     UpdateListView();
                     break;
                 case Keys.Delete:
-                    // TODO : Suppr Item
                     removeArticle();
                     break;
             }
@@ -280,9 +279,23 @@ namespace Bacchus
             ArticleDAO.removeArticle(article);
         }
 
-        public void modifyOption()
+        /// <summary>
+        /// Modifie un article
+        /// </summary>
+        public void modifyArticle()
         {
+            // Recupère la description de l'article sélectionné
+            var descriptionItem = listView1.SelectedItems[0];
+            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
+            if (article == null)
+            {
+                MessageBox.Show("L'article n'existe pas");
+                return;
+            }
 
+            FormModifArticle formModif = new FormModifArticle();
+            formModif.InitializeDataComponent(article);
+            formModif.Show();
         }
 
        
