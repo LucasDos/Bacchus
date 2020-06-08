@@ -30,5 +30,6 @@ namespace Bacchus.Model
             this.Reference = Reference;
             this.Nom = Nom;
         }
+
     }
 }

@@ -47,5 +47,16 @@ namespace Bacchus.DAO
             }
             return null;
         }
+
+        public static Marque GetWhereRef(int reference)
+        {
+            SQLiteDataReader marque = Database.GetSql("select * from Marques where RefMarque = '" + reference + "';");
+
+            if (marque.Read())
+            {
+                return new Marque(marque.GetInt32(0), marque.GetString(1));
+            }
+            return null;
+        }
     }
 }
