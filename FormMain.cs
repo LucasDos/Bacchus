@@ -19,20 +19,27 @@ namespace Bacchus
         public FormMain()
         {
             InitializeComponent();
-            
+            InitializeTreeView();
         }
 
+        /// <summary>
+        /// Initialise le composant treeView1
+        /// </summary>
         public void InitializeTreeView()
         {
             
             treeView1.BeginUpdate();
-            treeView1.Nodes[1].Tag = "Familles";
+
             addFamilles(treeView1.Nodes[1]);
             addMarques(treeView1.Nodes[2]);
 
             treeView1.EndUpdate();
         }
 
+        /// <summary>
+        /// Ajoute les famille dans la treeView1
+        /// </summary>
+        /// <param name="node">Node "Familles"</param>
         public void addFamilles(TreeNode node)
         {
             List<Famille> familles = FamilleDAO.GetAll();
@@ -50,6 +57,10 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Ajoute les marques dans le treeView1
+        /// </summary>
+        /// <param name="node">Node "Marques"</param>
         public void addMarques(TreeNode node)
         {
             List<Marque> marques = MarqueDAO.GetAll();
@@ -60,6 +71,11 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Lucas je sais pas ce que c'est, tu peux mettre cette cartouche de com stp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void importerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormImporter formImpor = new FormImporter();
@@ -67,12 +83,20 @@ namespace Bacchus
             InitializeTreeView();
         }
 
+        /// <summary>
+        /// Lucas je sais pas ce que c'est, tu peux mettre cette cartouche de com stp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void exporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormExporter formExport = new FormExporter();
             formExport.Show();
         }
 
+        /// <summary>
+        /// Met a jour la listView1 pour afficher les articles/familles/SousFamilles/Marques
+        /// </summary>
         public void UpdateListView()
         {
             listView1.Clear();
@@ -81,7 +105,6 @@ namespace Bacchus
             if( (treeView1.SelectedNode.Level == 0) )
             {
                 // Affichage de tous les articles
-
                 listView1.Name = "ArticleListe";
 
                 listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
@@ -203,6 +226,11 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Detecte le click sur une node
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             UpdateListView();

@@ -10,22 +10,27 @@ namespace Bacchus.DAO
 {
     class ArticleDAO
     {
+        /// <summary>
+        /// Insert un Artcile dans la BDD
+        /// </summary>
+        /// <param name="article">Article à ajouter</param>
+        /// <returns>La référence de l'article</returns>
         public static String Insert(Article article)
         {
             if (article != null)
             {
-                // We verify if sousFamille have an id
-                // If not we search the id corresponding by the name
-                // Else we create it
+                // On vérifie si SousFamille à un ID
+                // Si non on recherche par nom
+                // Sinon on le crée
                 int sousFamilleReference = article.SousFamille.RefSousFamille;
                 if (article.SousFamille.RefSousFamille == 0)
                 {
                     sousFamilleReference = getSousFamilleRef(article);
                 }
 
-                // We verify if marque have an id
-                // If not we search the id corresponding by the name
-                // Else we create it
+                // On vérifie si Marque a un ID
+                // Si non on recherche par nom
+                // Sinon on le crée
                 int marqueReference = article.Marque.Reference;
                 if (article.Marque.Reference == 0)
                 {
@@ -48,6 +53,10 @@ namespace Bacchus.DAO
             return null;
         }
 
+        /// <summary>
+        /// Récupère tous les articles de la BDD
+        /// </summary>
+        /// <returns>Liste de tous les Articles</returns>
         public static List<Article> GetAll()
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles;");
@@ -55,6 +64,7 @@ namespace Bacchus.DAO
             List<Article> list = new List<Article>();
             while (article.Read())
             {
+                // Récupère chaque attribut de l'abjet article
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refSFam = article.GetInt32(2);
@@ -65,11 +75,17 @@ namespace Bacchus.DAO
                 SousFamille sfam = SousFamilleDAO.GetWhereRef(refSFam);
                 Marque marque = MarqueDAO.GetWhereRef(refMarque);
 
+                // Ajoute un objet Article dans la list
                 list.Add(new Article(reference, desc, sfam, marque, prix, quantite));
             }
 
             return list;
         }
+        /// <summary>
+        /// Recupère la Référence d'une SousFamille d'un article
+        /// </summary>
+        /// <param name="article">Article à chercher</param>
+        /// <returns>La référence de la famille de l'article</returns>
         public static int getSousFamilleRef(Article article)
         {
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(article.SousFamille.Nom);
@@ -85,6 +101,11 @@ namespace Bacchus.DAO
             }
         }
 
+        /// <summary>
+        /// Récupère la Référence d'une marque d'un article
+        /// </summary>
+        /// <param name="article">Article à chercher</param>
+        /// <returns>La référence de la marque del'article</returns>
         public static int getMarqueRef(Article article)
         {
             Marque marque = MarqueDAO.GetWhereName(article.Marque.Nom);
@@ -100,6 +121,11 @@ namespace Bacchus.DAO
             }
         }
 
+        /// <summary>
+        /// Récupère les articles d'une SousFamille
+        /// </summary>
+        /// <param name="sf">SousFamille à trouver</param>
+        /// <returns>Liste des Articles de cette SousFamille</returns>
         public static List<Article> getArticleBySousFamille(SousFamille sf)
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles where RefSousFamille='" + sf.RefSousFamille + "';");
@@ -121,6 +147,11 @@ namespace Bacchus.DAO
             return list;
         }
 
+        /// <summary>
+        /// récupère les Articles d'une Marque
+        /// </summary>
+        /// <param name="marque">Marque à chercher</param>
+        /// <returns>Liste des articles de cette Marque</returns>
         public static List<Article> getByMarque(Marque marque)
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles where RefMarque='" + marque.Reference + "';");
