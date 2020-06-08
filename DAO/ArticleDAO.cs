@@ -170,5 +170,28 @@ namespace Bacchus.DAO
             }
             return list;
         }
+        
+        public static Article getByDescription(string descritpion)
+        {
+            SQLiteDataReader article = Database.GetSql("select * from Articles where Description='" + descritpion + "';");
+
+            if(article.Read())
+            {
+                string reference = article.GetString(0);
+                string desc = article.GetString(1);
+                int refSousFamille = article.GetInt32(2);
+                int refMarque = article.GetInt32(3);
+                float prix = article.GetFloat(4);
+                int quantite = article.GetInt32(5);
+
+                SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
+                Marque marque = MarqueDAO.GetWhereRef(refMarque);
+
+                return new Article(reference, desc, sousFamille, marque, prix, quantite);
+            }
+
+            return null;
+
+        }
     }
 }

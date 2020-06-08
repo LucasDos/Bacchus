@@ -238,10 +238,34 @@ namespace Bacchus
 
         private void listView1_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            switch (e.KeyCode)
             {
-                
+                case Keys.Enter:
+                    // TODO: Modifiy Artcile
+                    modifyOption();
+                    break;
+                case Keys.F5:
+                    UpdateListView();
+                    break;
+                case Keys.Delete:
+                    // TODO : Suppr Item
+                    removeOption();
+                    break;
             }
         }
+
+        public void removeOption()
+        {
+            var descriptionItem = listView1.SelectedItems[0];
+            Console.WriteLine(descriptionItem.Text);
+            
+        }
+
+        public void modifyOption()
+        {
+
+        }
+
+       
     }
 }
