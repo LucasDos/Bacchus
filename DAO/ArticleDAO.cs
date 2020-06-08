@@ -99,5 +99,45 @@ namespace Bacchus.DAO
                 return MarqueDAO.Insert(article.Marque);
             }
         }
+
+        public static List<Article> getArticleBySousFamille(SousFamille sf)
+        {
+            SQLiteDataReader article = Database.GetSql("select * from Article where RefSousFamille='" + sf.RefSousFamille + "';");
+
+            List<Article> list = new List<Article>();
+            while (article.Read())
+            {
+                string reference = article.GetString(0);
+                string desc = article.GetString(1);
+                int refMarque = article.GetInt32(3);
+                float prix = article.GetFloat(4);
+                int quantite = article.GetInt32(5);
+
+                Marque marque = MarqueDAO.GetWhereRef(refMarque);
+
+                list.Add(new Article(reference, desc, sf, marque, prix, quantite));
+            }
+
+            return list;
+        }
+
+        public static List<Article> getByMarque(Marque marque)
+        {
+            SQLiteDataReader article = Database.GetSql("select * from Article where RefMarque='" + marque.Reference + "';");
+
+            List<Article> list = new List<Article>();
+            while (article.Read())
+            {
+                string reference = article.GetString(0);
+                string desc = article.GetString(1);
+                int refSousFamille = article.GetInt32(2);
+                float prix = article.GetFloat(4);
+                int quantite = article.GetInt32(5);
+                SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
+
+                list.Add(new Article(reference, desc, sousFamille, marque, prix, quantite));
+            }
+            return list;
+        }
     }
 }

@@ -70,14 +70,14 @@ namespace Bacchus.DAO
             }
         }
 
-        public static List<SousFamille> GetWhereFamille(int reference)
+        public static List<SousFamille> GetWhereFamilleByRef(Famille famille)
         {
-            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefFamille = '" + reference + "';");
+            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefFamille = '" + famille.Reference + "';");
 
             List<SousFamille> list = new List<SousFamille>();
             while (sousFamille.Read())
             {
-                list.Add(new SousFamille(sousFamille.GetInt32(0), new Famille(), sousFamille.GetString(2)));
+                list.Add(new SousFamille(sousFamille.GetInt32(0), famille, sousFamille.GetString(2)));
             }
             return list;
         }

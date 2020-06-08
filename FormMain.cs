@@ -46,7 +46,7 @@ namespace Bacchus
             {
                 TreeNode newNode = new TreeNode(famille.Nom);
                 node.Nodes.Add(newNode);
-                List<SousFamille> sousFamilles = SousFamilleDAO.GetWhereFamille(famille.Reference);
+                List<SousFamille> sousFamilles = SousFamilleDAO.GetWhereFamilleByRef(famille);
 
                 foreach (SousFamille sousFamille in sousFamilles)
                 {
@@ -111,11 +111,76 @@ namespace Bacchus
             }
             else
             {
-                listView1.Name = "OtherList";
-
+                listView1.Name = "DescriptionList";
                 listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
 
-                
+                // Liste d'article globale à afficher
+                List<Article> articles = new List<Article>();
+
+                switch (treeView1.SelectedNode.Index)
+                {
+                    case 1:
+                        /** Familles selectionné */
+                        Famille famille = FamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+                        List<SousFamille> sousFamilles = SousFamilleDAO.GetWhereFamilleByRef(famille);
+
+                        foreach(SousFamille indexSF in sousFamilles)
+                        {
+                            List<Article> tmpArticle = ArticleDAO.getArticleBySousFamille(indexSF);
+                            foreach(Article article in tmpArticle)
+                            {
+                                articles.Add(article);
+                            }
+                        }
+
+                        foreach (Article indexArticle in articles)
+                        {
+                            var row = new string[]
+                            {
+                                indexArticle.Description
+                            };
+
+                            var lvi = new ListViewItem(row);
+                            lvi.Tag = indexArticle;
+                            listView1.Items.Add(lvi);
+                        }
+
+                        break;
+                    case 2:
+                        /** Sous Famille sélectionné */
+                        SousFamille sousFamille = SousFamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+                        articles = ArticleDAO.getArticleBySousFamille(sousFamille);
+
+                        foreach (Article indexArticle in articles)
+                        {
+                            var row = new string[]
+                            {
+                                indexArticle.Description
+                            };
+
+                            var lvi = new ListViewItem(row);
+                            lvi.Tag = indexArticle;
+                            listView1.Items.Add(lvi);
+                        }
+                        break;
+                    case 3:
+                        /** Marque selectionné */
+                        Marque marque = MarqueDAO.GetWhereName(treeView1.SelectedNode.Text);
+                        articles = ArticleDAO.getByMarque(marque);
+
+                        foreach (Article indexArticle in articles)
+                        {
+                            var row = new string[]
+                            {
+                                indexArticle.Description
+                            };
+
+                            var lvi = new ListViewItem(row);
+                            lvi.Tag = indexArticle;
+                            listView1.Items.Add(lvi);
+                        }
+                        break;
+                }
             }
         }
     }
