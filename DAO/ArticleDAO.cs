@@ -50,7 +50,7 @@ namespace Bacchus.DAO
 
         public static List<Article> GetAll()
         {
-            SQLiteDataReader article = Database.GetSql("select * from Article;");
+            SQLiteDataReader article = Database.GetSql("select * from Articles;");
 
             List<Article> list = new List<Article>();
             while (article.Read())
@@ -102,7 +102,7 @@ namespace Bacchus.DAO
 
         public static List<Article> getArticleBySousFamille(SousFamille sf)
         {
-            SQLiteDataReader article = Database.GetSql("select * from Article where RefSousFamille='" + sf.RefSousFamille + "';");
+            SQLiteDataReader article = Database.GetSql("select * from Articles where RefSousFamille='" + sf.RefSousFamille + "';");
 
             List<Article> list = new List<Article>();
             while (article.Read())
@@ -123,7 +123,7 @@ namespace Bacchus.DAO
 
         public static List<Article> getByMarque(Marque marque)
         {
-            SQLiteDataReader article = Database.GetSql("select * from Article where RefMarque='" + marque.Reference + "';");
+            SQLiteDataReader article = Database.GetSql("select * from Articles where RefMarque='" + marque.Reference + "';");
 
             List<Article> list = new List<Article>();
             while (article.Read())

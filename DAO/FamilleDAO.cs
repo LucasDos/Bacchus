@@ -51,7 +51,7 @@ namespace Bacchus.DAO
 
         public static Famille GetWhereRef(int reference)
         {
-            SQLiteDataReader famille = Database.GetSql("select * from Familles where RefArticle = '" + reference + "';");
+            SQLiteDataReader famille = Database.GetSql("select * from Familles where RefFamille = '" + reference + "';");
 
             if (famille.Read())
             {
