@@ -41,7 +41,7 @@ namespace Bacchus.DAO
 
                 if(!exists.Read())
                 {
-                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', " + sousFamilleReference + ", " + marqueReference + ", " + Convert.ToInt32(article.Prix) + ", " + article.Quantite + ");");
+                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', '" + sousFamilleReference + "', '" + marqueReference + "', '" + article.Prix + "', '" + article.Quantite + "');");
                 }
                 else
                 {
@@ -69,7 +69,8 @@ namespace Bacchus.DAO
                 string desc = article.GetString(1);
                 int refSFam = article.GetInt32(2);
                 int refMarque = article.GetInt32(3);
-                float prix = article.GetFloat(4);
+                // float prix = article.GetFloat(4); Ne fonctionne pas 
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
 
                 SousFamille sfam = SousFamilleDAO.GetWhereRef(refSFam);
@@ -136,7 +137,7 @@ namespace Bacchus.DAO
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refMarque = article.GetInt32(3);
-                float prix = article.GetFloat(4);
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
 
                 Marque marque = MarqueDAO.GetWhereRef(refMarque);
@@ -162,7 +163,7 @@ namespace Bacchus.DAO
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refSousFamille = article.GetInt32(2);
-                float prix = article.GetFloat(4);
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
                 SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
 
@@ -181,7 +182,7 @@ namespace Bacchus.DAO
                 string desc = article.GetString(1);
                 int refSousFamille = article.GetInt32(2);
                 int refMarque = article.GetInt32(3);
-                float prix = article.GetFloat(4);
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
 
                 SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
@@ -206,13 +207,13 @@ namespace Bacchus.DAO
         public static void modifyArticle(Article article)
         {
             // Bug
-            SQLiteDataReader res = Database.GetSql("update Articles set " +
+            Database.RunSql("update Articles set " +
                 "Description='" + article.Description + "', " +
                 "RefSousFamille='" + article.SousFamille.RefSousFamille + "', " +
                 "RefMarque='" + article.Marque.Reference + "', " +
                 "PrixHT='" + article.Prix + "', " +
                 "Quantite='" + article.Quantite + "'" +
-                "where Reference='" + article.Reference + "'" +
+                "where RefArticle='" + article.Reference + "'" +
                 ";");
 
         }

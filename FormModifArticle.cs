@@ -47,11 +47,13 @@ namespace Bacchus
         {
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
             Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
-            double prix = Convert.ToDouble(prix_input.Text);
+            float prix = Single.Parse(prix_input.Text);
             int quantite = Convert.ToInt32(quantite_input.Value);
             
             Article article = new Article(reference_label.Text, description_input.Text, sousFamille, marque, prix, quantite);
             ArticleDAO.modifyArticle(article);
+
+            this.Close();
         }
     }
 }

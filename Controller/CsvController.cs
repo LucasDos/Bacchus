@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows.Forms;
 using Bacchus.DAO;
 using Bacchus.Model;
@@ -58,7 +59,7 @@ namespace Bacchus
                     sousFamille.RefFamille = famille;
                     sousFamille.Nom = fields[4];
 
-                    Article article = new Article(fields[1], fields[0], sousFamille, marque, Convert.ToDouble(fields[5]), 0);
+                    Article article = new Article(fields[1], fields[0], sousFamille, marque, Single.Parse(fields[5]), 0);
                     
                     data.Add(article);
 

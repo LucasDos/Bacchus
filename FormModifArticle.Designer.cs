@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.reference_label = new System.Windows.Forms.Label();
             this.valider_btn = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.description_input = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.reference_label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quantite_input)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +66,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(382, 353);
             this.panel1.TabIndex = 1;
+            // 
+            // reference_label
+            // 
+            this.reference_label.AutoSize = true;
+            this.reference_label.Location = new System.Drawing.Point(119, 51);
+            this.reference_label.Name = "reference_label";
+            this.reference_label.Size = new System.Drawing.Size(0, 17);
+            this.reference_label.TabIndex = 13;
             // 
             // valider_btn
             // 
@@ -172,18 +180,10 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.label1.Location = new System.Drawing.Point(100, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 25);
+            this.label1.Size = new System.Drawing.Size(183, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ajouter un article";
+            this.label1.Text = "Modifier un article";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // reference_label
-            // 
-            this.reference_label.AutoSize = true;
-            this.reference_label.Location = new System.Drawing.Point(119, 51);
-            this.reference_label.Name = "reference_label";
-            this.reference_label.Size = new System.Drawing.Size(0, 17);
-            this.reference_label.TabIndex = 13;
             // 
             // FormModifArticle
             // 
