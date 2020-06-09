@@ -58,9 +58,8 @@ namespace Bacchus
             else
             {
                 Famille famille = FamilleDAO.GetWhereName(famille_cbx.Text);
-                int reference = Convert.ToInt32(reference_lbl.Text);
 
-                SousFamille sousFamille = new SousFamille(reference, famille, name_input.Text);
+                SousFamille sousFamille = new SousFamille(Convert.ToInt32(reference_lbl.Text), famille, name_input.Text);
                 SousFamilleDAO.updateSousFamille(sousFamille);
 
                 this.Close();
