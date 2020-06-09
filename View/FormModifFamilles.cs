@@ -43,7 +43,7 @@ namespace Bacchus
             else
             {
                 Famille famille = new Famille(Convert.ToInt32(referece_lbl.Text), name_input.Text);
-                FamilleDAO.updateFamille(famille);
+                FamilleDAO.UpdateFamille(famille);
 
                 this.Close();
             }

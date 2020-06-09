@@ -22,7 +22,7 @@ namespace Bacchus
         /// <summary>
         /// Ajoute une famille dans la BDD
         /// </summary>
-        public void addFamilleSQL()
+        public void AddFamilleSQL()
         {
             Famille famille = new Famille(0, name_input.Text);
             if ( FamilleDAO.Insert(famille)==0)
@@ -44,7 +44,7 @@ namespace Bacchus
             }
             else
             {
-                addFamilleSQL();
+                AddFamilleSQL();
 
                 this.Close();
             }

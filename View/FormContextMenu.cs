@@ -24,7 +24,7 @@ namespace Bacchus
         /// Sauvegarde l'article
         /// </summary>
         /// <param name="article"></param>
-        public void saveArticle(Article article)
+        public void SaveArticle(Article article)
         {
             this.article = article;
         }
@@ -72,7 +72,7 @@ namespace Bacchus
                 return;
             }
 
-            ArticleDAO.removeArticle(this.article);
+            ArticleDAO.RemoveArticle(this.article);
 
             this.Close();
         }

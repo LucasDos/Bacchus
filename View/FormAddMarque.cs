@@ -22,7 +22,7 @@ namespace Bacchus
         /// <summary>
         /// Ajoute la Marque dans le BDD
         /// </summary>
-        public void addMarqueSQL()
+        public void AddMarqueSQL()
         {
             Marque marque = new Marque(0, name_input.Text);
 
@@ -45,7 +45,7 @@ namespace Bacchus
             }
             else
             {
-                addMarqueSQL();
+                AddMarqueSQL();
 
                 this.Close();
             }
