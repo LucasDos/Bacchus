@@ -42,7 +42,12 @@ namespace Bacchus
             }
             else
             {
-                Marque marque = new Marque(Convert.ToInt32(reference_lbl.Text), name_input.Text);
+                string name = name_input.Text;
+
+                // Retire '
+                name = name.Replace(@"'", "");
+
+                Marque marque = new Marque(Convert.ToInt32(reference_lbl.Text), name);
                 MarqueDAO.UpdateMarque(marque);
 
                 this.Close();

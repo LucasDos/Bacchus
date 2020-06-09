@@ -50,6 +50,11 @@ namespace Bacchus
             int quantite = Convert.ToInt32(quantite_input.Value);
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
             Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
+
+            // Retire les ' des input
+            refArticle = refArticle.Replace(@"'", "");
+            description = description.Replace(@"'", "");
+            
             Article article = new Article(refArticle, description, sousFamille, marque, prix, quantite);
             
             if(ArticleDAO.Insert(new Article(refArticle, description, sousFamille, marque, prix, quantite)) == null)

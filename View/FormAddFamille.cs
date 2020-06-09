@@ -24,7 +24,11 @@ namespace Bacchus
         /// </summary>
         public void AddFamilleSQL()
         {
-            Famille famille = new Famille(0, name_input.Text);
+            // Remplace le caractère ' par aucun caractere
+            string name = name_input.Text;
+            name = name.Replace(@"'", "");
+
+            Famille famille = new Famille(0, name);
             if ( FamilleDAO.Insert(famille)==0)
             {
                 MessageBox.Show("L'ajout de la Famille a échoué !");

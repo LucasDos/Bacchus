@@ -24,7 +24,11 @@ namespace Bacchus
         /// </summary>
         public void AddMarqueSQL()
         {
-            Marque marque = new Marque(0, name_input.Text);
+            // Retire le caractere '
+            string name = name_input.Text;
+            name = name.Replace(@"'", "");
+
+            Marque marque = new Marque(0, name);
 
             if( MarqueDAO.Insert(marque) == 0)
             {

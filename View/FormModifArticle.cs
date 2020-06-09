@@ -61,12 +61,16 @@ namespace Bacchus
             }
             else
             {
+                string description = description_input.Text;
                 SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
                 Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
                 float prix = Single.Parse(prix_input.Text);
                 int quantite = Convert.ToInt32(quantite_input.Value);
 
-                Article article = new Article(reference_label.Text, description_input.Text, sousFamille, marque, prix, quantite);
+                // Retire le caractère '
+                description = description.Replace(@"'", "");
+
+                Article article = new Article(reference_label.Text, description, sousFamille, marque, prix, quantite);
                 ArticleDAO.ModifyArticle(article);
 
                 this.Close();
