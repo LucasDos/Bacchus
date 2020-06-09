@@ -299,5 +299,19 @@ namespace Bacchus
             formModif.Show();
             UpdateListView();
         }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if( e.Button == MouseButtons.Right)
+            {
+                FormContextMenu contextMenu = new FormContextMenu();
+                Article article = ArticleDAO.getByDescription(listView1.SelectedItems[0].Text);
+                contextMenu.saveArticle(article);
+                contextMenu.Show();
+                
+                UpdateListView();
+            }
+
+        }
     }
 }

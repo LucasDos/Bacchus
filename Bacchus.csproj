@@ -65,6 +65,12 @@
     <Compile Include="FormAddArticle.Designer.cs">
       <DependentUpon>FormAddArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormContextMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContextMenu.Designer.cs">
+      <DependentUpon>FormContextMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExporter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAddArticle.resx">
       <DependentUpon>FormAddArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContextMenu.resx">
+      <DependentUpon>FormContextMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormExporter.resx">
       <DependentUpon>FormExporter.cs</DependentUpon>
