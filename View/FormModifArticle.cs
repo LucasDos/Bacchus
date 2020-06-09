@@ -31,7 +31,7 @@ namespace Bacchus
             quantite_input.Value = article.Quantite;
 
             sousfamille_cbx.Text = article.SousFamille.Nom;
-            // Rempli la comobox de toutes les Sous Familles
+            // Rempli la combobox de toutes les Sous Familles
             List<SousFamille> sousFamilles = SousFamilleDAO.getAll();
             foreach(SousFamille sf in sousFamilles)
             {
