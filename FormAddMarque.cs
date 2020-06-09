@@ -19,6 +19,9 @@ namespace Bacchus
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Ajoute la Marque dans le BDD
+        /// </summary>
         public void addMarqueSQL()
         {
             Marque marque = new Marque(0, name_input.Text);
@@ -29,11 +32,23 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Detecte quand on clique sur le bouton ajouter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void add_btn_Click(object sender, EventArgs e)
         {
-            addMarqueSQL();
+            if( name_input.Text.Equals(""))
+            {
+                MessageBox.Show("Veuillez remplir correctement les champs !");
+            }
+            else
+            {
+                addMarqueSQL();
 
-            this.Close();
+                this.Close();
+            }
         }
     }
 }
