@@ -231,7 +231,7 @@ namespace Bacchus
             {
                 FormContextMenu contextMenu = new FormContextMenu();
                 Article article = ArticleDAO.GetByDescription(listView1.SelectedItems[0].Text);
-                contextMenu.SaveArticle(article);
+                contextMenu.SaveArticle(article, this.StartPosition);
                 contextMenu.ShowDialog();
 
                 UpdateListView();
@@ -410,7 +410,7 @@ namespace Bacchus
             }
         }
 
-                                        /** Fenetres modale */
+                                        /** Fenetres modales */
         /// <summary>
         /// Modifie un article
         /// </summary>
