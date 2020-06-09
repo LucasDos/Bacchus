@@ -101,6 +101,24 @@
     <Compile Include="FormModifArticle.Designer.cs">
       <DependentUpon>FormModifArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModifFamilles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifFamilles.Designer.cs">
+      <DependentUpon>FormModifFamilles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifMarque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifMarque.Designer.cs">
+      <DependentUpon>FormModifMarque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifSousFamille.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifSousFamille.Designer.cs">
+      <DependentUpon>FormModifSousFamille.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Bacchus.cs" />
     <Compile Include="FormImporter.cs">
       <SubType>Form</SubType>
@@ -146,6 +164,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormModifArticle.resx">
       <DependentUpon>FormModifArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifFamilles.resx">
+      <DependentUpon>FormModifFamilles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifMarque.resx">
+      <DependentUpon>FormModifMarque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifSousFamille.resx">
+      <DependentUpon>FormModifSousFamille.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

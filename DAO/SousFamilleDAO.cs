@@ -37,6 +37,10 @@ namespace Bacchus.DAO
             return 0;
         }
 
+        /// <summary>
+        /// Recupère toutes les SousFamilles de la BDD
+        /// </summary>
+        /// <returns>Liste des SousFamilles</returns>
         public static List<SousFamille> getAll()
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles;");
@@ -55,6 +59,19 @@ namespace Bacchus.DAO
 
             return list;
 
+        }
+
+        /// <summary>
+        /// Met a jour une SousFamille de la BDD
+        /// </summary>
+        /// <param name="sousFamille">SousFamille à mettre à jour</param>
+        public static void updateSousFamille(SousFamille sousFamille)
+        {
+            Database.RunSql("update SousFamilles set " +
+                "Nom='" + sousFamille.Nom + "', " +
+                "RefFamille='" + sousFamille.RefFamille.Reference + "'" +
+                "where RefSousFamille='" + sousFamille.RefSousFamille + "'" +
+                ";");
         }
 
         /// <summary>

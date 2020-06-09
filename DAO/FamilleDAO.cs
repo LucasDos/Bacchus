@@ -48,6 +48,18 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
+        /// Met a jour la famille dans le BDD
+        /// </summary>
+        /// <param name="famille">Famille à mettre à jour</param>
+        public static void updateFamille(Famille famille)
+        {
+            Database.RunSql("update Familles set " +
+                "Nom='" + famille.Nom + "'" +
+                "where RefFamille='" + famille.Reference + "'" +
+                ";");
+        }
+
+        /// <summary>
         /// Récupère une Famille avec le Nom
         /// </summary>
         /// <param name="name">Nom de la Famille à chercher</param>
