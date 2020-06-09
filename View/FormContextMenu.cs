@@ -28,7 +28,7 @@ namespace Bacchus
         private void add_btn_Click_1(object sender, EventArgs e)
         {
             FormAddArticle formAdd = new FormAddArticle();
-            formAdd.Show();
+            formAdd.ShowDialog();
 
             this.Close();
         }
@@ -37,7 +37,7 @@ namespace Bacchus
         {
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(this.article);
-            formModif.Show();
+            formModif.ShowDialog();
 
             this.Close();
         }
@@ -61,19 +61,19 @@ namespace Bacchus
         private void famAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddFamille formAddFamille = new FormAddFamille();
-            formAddFamille.Show();
+            formAddFamille.ShowDialog();
         }
 
         private void sfAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddSousFamille formSF = new FormAddSousFamille();
-            formSF.Show();
+            formSF.ShowDialog();
         }
 
         private void marqueAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddMarque formMarque = new FormAddMarque();
-            formMarque.Show();
+            formMarque.ShowDialog();
         }
     }
 }
