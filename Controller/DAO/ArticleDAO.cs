@@ -25,7 +25,7 @@ namespace Bacchus.DAO
                 int sousFamilleReference = article.SousFamille.RefSousFamille;
                 if (article.SousFamille.RefSousFamille == 0)
                 {
-                    sousFamilleReference = getSousFamilleRef(article);
+                    sousFamilleReference = GetSousFamilleRef(article);
                 }
 
                 // On vérifie si Marque a un ID
@@ -34,7 +34,7 @@ namespace Bacchus.DAO
                 int marqueReference = article.Marque.Reference;
                 if (article.Marque.Reference == 0)
                 {
-                    marqueReference = getMarqueRef(article);
+                    marqueReference = GetMarqueRef(article);
                 }
 
                 SQLiteDataReader exists = Database.GetSql("select * from Articles where RefArticle = '" + article.Reference + "';");
@@ -88,7 +88,7 @@ namespace Bacchus.DAO
         /// </summary>
         /// <param name="article">Article à chercher</param>
         /// <returns>La référence de la famille de l'article</returns>
-        public static int getSousFamilleRef(Article article)
+        public static int GetSousFamilleRef(Article article)
         {
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(article.SousFamille.Nom);
 
@@ -108,7 +108,7 @@ namespace Bacchus.DAO
         /// </summary>
         /// <param name="article">Article à chercher</param>
         /// <returns>La référence de la marque del'article</returns>
-        public static int getMarqueRef(Article article)
+        public static int GetMarqueRef(Article article)
         {
             Marque marque = MarqueDAO.GetWhereName(article.Marque.Nom);
 
@@ -128,7 +128,7 @@ namespace Bacchus.DAO
         /// </summary>
         /// <param name="sf">SousFamille à trouver</param>
         /// <returns>Liste des Articles de cette SousFamille</returns>
-        public static List<Article> getArticleBySousFamille(SousFamille sf)
+        public static List<Article> GetArticleBySousFamille(SousFamille sf)
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles where RefSousFamille='" + sf.RefSousFamille + "';");
 
@@ -154,7 +154,7 @@ namespace Bacchus.DAO
         /// </summary>
         /// <param name="marque">Marque à chercher</param>
         /// <returns>Liste des articles de cette Marque</returns>
-        public static List<Article> getByMarque(Marque marque)
+        public static List<Article> GetByMarque(Marque marque)
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles where RefMarque='" + marque.Reference + "';");
 
@@ -178,7 +178,7 @@ namespace Bacchus.DAO
         /// </summary>
         /// <param name="descritpion">Description del'Article</param>
         /// <returns>L'Article</returns>
-        public static Article getByDescription(string descritpion)
+        public static Article GetByDescription(string descritpion)
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles where Description='" + descritpion + "';");
 
@@ -205,7 +205,7 @@ namespace Bacchus.DAO
         /// Supprime un article de la BDD
         /// </summary>
         /// <param name="article">Article à supprimer</param>
-        public static void removeArticle(Article article)
+        public static void RemoveArticle(Article article)
         {
             SQLiteDataReader res = Database.GetSql("delete from Articles where RefArticle='" + article.Reference + "';");
         }
@@ -214,7 +214,7 @@ namespace Bacchus.DAO
         /// Modifie un article existant
         /// </summary>
         /// <param name="article">Article à modifier</param>
-        public static void modifyArticle(Article article)
+        public static void ModifyArticle(Article article)
         {
             Database.RunSql("update Articles set " +
                 "Description='" + article.Description + "', " +
@@ -230,7 +230,7 @@ namespace Bacchus.DAO
         /// Recupère le nombre d'Artcile dans la BDD
         /// </summary>
         /// <returns>Nombre d'Article</returns>
-        public static int countAllArticle()
+        public static int CountAllArticle()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from Articles;");
             int res = 0;

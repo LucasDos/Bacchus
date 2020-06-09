@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Tous les articles");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Familles");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Marques");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Tous les articles");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Familles");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Marques");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualiserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,11 +43,11 @@
             this.nbFamille_SSL = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.nbSF_SSL = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nbMarque_SSL = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.nbMarque_SSL = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -64,7 +64,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(999, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(999, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -75,7 +75,7 @@
             this.importerToolStripMenuItem,
             this.exporterToolStripMenuItem});
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
-            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 26);
+            this.fichierToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.fichierToolStripMenuItem.Text = "Fichier";
             // 
             // actualiserToolStripMenuItem
@@ -153,10 +153,22 @@
             this.nbSF_SSL.Size = new System.Drawing.Size(17, 20);
             this.nbSF_SSL.Text = "0";
             // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(157, 20);
+            this.toolStripStatusLabel3.Text = "Nombre de Marques : ";
+            // 
+            // nbMarque_SSL
+            // 
+            this.nbMarque_SSL.Name = "nbMarque_SSL";
+            this.nbMarque_SSL.Size = new System.Drawing.Size(17, 20);
+            this.nbMarque_SSL.Text = "0";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(5, 35);
+            this.splitContainer1.Location = new System.Drawing.Point(5, 33);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -164,13 +176,13 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
             this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer1.Panel1MinSize = 100;
+            this.splitContainer1.Panel1MinSize = 200;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer1.Size = new System.Drawing.Size(999, 510);
+            this.splitContainer1.Size = new System.Drawing.Size(999, 512);
             this.splitContainer1.SplitterDistance = 332;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -180,17 +192,17 @@
             this.treeView1.Location = new System.Drawing.Point(3, 2);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.treeView1.Name = "treeView1";
-            treeNode4.Name = "all_articles";
-            treeNode4.Text = "Tous les articles";
-            treeNode5.Name = "famillesNode";
-            treeNode5.Text = "Familles";
-            treeNode6.Name = "marquesNode";
-            treeNode6.Text = "Marques";
+            treeNode1.Name = "all_articles";
+            treeNode1.Text = "Tous les articles";
+            treeNode2.Name = "famillesNode";
+            treeNode2.Text = "Familles";
+            treeNode3.Name = "marquesNode";
+            treeNode3.Text = "Marques";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5,
-            treeNode6});
-            this.treeView1.Size = new System.Drawing.Size(326, 506);
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            this.treeView1.Size = new System.Drawing.Size(326, 508);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -203,25 +215,14 @@
             this.listView1.Location = new System.Drawing.Point(3, 2);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(657, 506);
+            this.listView1.Size = new System.Drawing.Size(657, 508);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyUp);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(157, 20);
-            this.toolStripStatusLabel3.Text = "Nombre de Marques : ";
-            // 
-            // nbMarque_SSL
-            // 
-            this.nbMarque_SSL.Name = "nbMarque_SSL";
-            this.nbMarque_SSL.Size = new System.Drawing.Size(17, 20);
-            this.nbMarque_SSL.Text = "0";
             // 
             // FormMain
             // 

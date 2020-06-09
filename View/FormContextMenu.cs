@@ -15,6 +15,7 @@ namespace Bacchus
     partial class FormContextMenu : Form
     {
         public Article article;
+        public FormStartPosition positionParent; 
         public FormContextMenu()
         {
             InitializeComponent();
@@ -24,9 +25,10 @@ namespace Bacchus
         /// Sauvegarde l'article
         /// </summary>
         /// <param name="article"></param>
-        public void saveArticle(Article article)
+        public void SaveArticle(Article article, FormStartPosition position)
         {
             this.article = article;
+            this.positionParent = position;
         }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace Bacchus
         private void add_btn_Click_1(object sender, EventArgs e)
         {
             FormAddArticle formAdd = new FormAddArticle();
+            formAdd.StartPosition = this.positionParent;
             formAdd.ShowDialog();
 
             this.Close();
@@ -51,6 +54,7 @@ namespace Bacchus
         {
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(this.article);
+            formModif.StartPosition = this.positionParent;
             formModif.ShowDialog();
 
             this.Close();
@@ -72,7 +76,7 @@ namespace Bacchus
                 return;
             }
 
-            ArticleDAO.removeArticle(this.article);
+            ArticleDAO.RemoveArticle(this.article);
 
             this.Close();
         }
@@ -85,6 +89,7 @@ namespace Bacchus
         private void famAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddFamille formAddFamille = new FormAddFamille();
+            formAddFamille.StartPosition = this.positionParent;
             formAddFamille.ShowDialog();
         }
 
@@ -96,6 +101,7 @@ namespace Bacchus
         private void sfAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddSousFamille formSF = new FormAddSousFamille();
+            formSF.StartPosition = this.positionParent;
             formSF.ShowDialog();
         }
 
@@ -107,6 +113,7 @@ namespace Bacchus
         private void marqueAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddMarque formMarque = new FormAddMarque();
+            formMarque.StartPosition = this.positionParent;
             formMarque.ShowDialog();
         }
     }

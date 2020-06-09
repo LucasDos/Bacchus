@@ -67,7 +67,7 @@ namespace Bacchus.DAO
         /// <summary>
         /// Ferme la connexion a la BDD
         /// </summary>
-        public static void closeDb()
+        public static void CloseDb()
         {
             db.Close();
         }

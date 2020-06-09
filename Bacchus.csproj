@@ -59,6 +59,7 @@
     <Compile Include="Controller\DAO\FamilleDAO.cs" />
     <Compile Include="Controller\DAO\MarqueDAO.cs" />
     <Compile Include="Controller\DAO\SousFamilleDAO.cs" />
+    <Compile Include="Controller\ListViewItemComparer.cs" />
     <Compile Include="View\FormAddArticle.cs">
       <SubType>Form</SubType>
     </Compile>

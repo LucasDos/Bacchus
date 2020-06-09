@@ -50,7 +50,7 @@ namespace Bacchus.DAO
         /// Met à jour une marque dans la BDD
         /// </summary>
         /// <param name="marque">Marque à mettre à jour</param>
-        public static void updateMarque(Marque marque)
+        public static void UpdateMarque(Marque marque)
         {
             Database.RunSql("update Marque set" +
                 "Nom='" + marque.Nom + "'" +
@@ -94,7 +94,7 @@ namespace Bacchus.DAO
         /// Recupère le nombre de Marque dans la BDD
         /// </summary>
         /// <returns>Le nombre de Marque</returns>
-        public static int countAllMarque()
+        public static int CountAllMarque()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from Marques;");
 

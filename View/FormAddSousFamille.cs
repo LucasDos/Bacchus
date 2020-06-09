@@ -35,8 +35,12 @@ namespace Bacchus
         /// <summary>
         /// Ajoute la SOusFamille dans la SQL
         /// </summary>
-        public void addSousFamilleSQL()
+        public void AddSousFamilleSQL()
         {
+            // Retire le caractere '
+            string name = name_input.Text;
+            name = name.Replace(@"'", "");
+
             Famille famille = FamilleDAO.GetWhereName(famille_cbx.Text);
             SousFamille sousFamille = new SousFamille(0, famille, name_input.Text);
 
@@ -59,7 +63,7 @@ namespace Bacchus
             }
             else
             {
-                addSousFamilleSQL();
+                AddSousFamilleSQL();
 
                 this.Close();
             }

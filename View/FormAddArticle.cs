@@ -26,7 +26,7 @@ namespace Bacchus
         /// </summary>
         public void InitializeCombobox()
         {
-            List<SousFamille> sousFamilles = SousFamilleDAO.getAll();
+            List<SousFamille> sousFamilles = SousFamilleDAO.GetAll();
             List<Marque> marques = MarqueDAO.GetAll();
 
             foreach (SousFamille sf in sousFamilles)
@@ -42,7 +42,7 @@ namespace Bacchus
         /// <summary>
         /// Ajoute l'article dans la BDD
         /// </summary>
-        public void addArticleSQL()
+        public void AddArticleSQL()
         {
             string refArticle = reference_input.Text;
             string description = description_input.Text;
@@ -50,6 +50,11 @@ namespace Bacchus
             int quantite = Convert.ToInt32(quantite_input.Value);
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
             Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
+
+            // Retire les ' des input
+            refArticle = refArticle.Replace(@"'", "");
+            description = description.Replace(@"'", "");
+            
             Article article = new Article(refArticle, description, sousFamille, marque, prix, quantite);
             
             if(ArticleDAO.Insert(new Article(refArticle, description, sousFamille, marque, prix, quantite)) == null)
@@ -73,7 +78,7 @@ namespace Bacchus
             }
             else
             {
-                addArticleSQL();
+                AddArticleSQL();
 
                 this.Close();
             }

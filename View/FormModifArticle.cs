@@ -32,7 +32,7 @@ namespace Bacchus
 
             sousfamille_cbx.Text = article.SousFamille.Nom;
             // Rempli la combobox de toutes les Sous Familles
-            List<SousFamille> sousFamilles = SousFamilleDAO.getAll();
+            List<SousFamille> sousFamilles = SousFamilleDAO.GetAll();
             foreach(SousFamille sf in sousFamilles)
             {
                 sousfamille_cbx.Items.Add(sf.Nom);
@@ -61,13 +61,17 @@ namespace Bacchus
             }
             else
             {
+                string description = description_input.Text;
                 SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
                 Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
                 float prix = Single.Parse(prix_input.Text);
                 int quantite = Convert.ToInt32(quantite_input.Value);
 
-                Article article = new Article(reference_label.Text, description_input.Text, sousFamille, marque, prix, quantite);
-                ArticleDAO.modifyArticle(article);
+                // Retire le caractère '
+                description = description.Replace(@"'", "");
+
+                Article article = new Article(reference_label.Text, description, sousFamille, marque, prix, quantite);
+                ArticleDAO.ModifyArticle(article);
 
                 this.Close();
             }

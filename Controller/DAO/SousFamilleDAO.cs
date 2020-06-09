@@ -22,7 +22,7 @@ namespace Bacchus.DAO
                 int reference = sousFamille.RefFamille.Reference;
                 if (sousFamille.RefFamille.Reference == 0)
                 {
-                    reference = getFamilleRef(sousFamille);
+                    reference = GetFamilleRef(sousFamille);
                 }
 
                 Database.RunSql("insert into SousFamilles('RefFamille', 'Nom') values(" + reference + ", '" + sousFamille.Nom + "');");
@@ -41,7 +41,7 @@ namespace Bacchus.DAO
         /// Recupère toutes les SousFamilles de la BDD
         /// </summary>
         /// <returns>Liste des SousFamilles</returns>
-        public static List<SousFamille> getAll()
+        public static List<SousFamille> GetAll()
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles;");
 
@@ -65,7 +65,7 @@ namespace Bacchus.DAO
         /// Met a jour une SousFamille de la BDD
         /// </summary>
         /// <param name="sousFamille">SousFamille à mettre à jour</param>
-        public static void updateSousFamille(SousFamille sousFamille)
+        public static void UpdateSousFamille(SousFamille sousFamille)
         {
             Database.RunSql("update SousFamilles set " +
                 "Nom='" + sousFamille.Nom + "', " +
@@ -112,7 +112,7 @@ namespace Bacchus.DAO
         /// </summary>
         /// <param name="sousFamille">La SousFamille</param>
         /// <returns>La SousFamille</returns>
-        private static int getFamilleRef(SousFamille sousFamille)
+        private static int GetFamilleRef(SousFamille sousFamille)
         {
             Famille famille = FamilleDAO.GetWhereName(sousFamille.RefFamille.Nom);
 
@@ -148,7 +148,7 @@ namespace Bacchus.DAO
         /// Comptele nombre de SousFamilles dans la BDD
         /// </summary>
         /// <returns>Lombre de SousFamilles</returns>
-        public static int countAllSousFamille()
+        public static int CountAllSousFamille()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from SousFamilles;");
 

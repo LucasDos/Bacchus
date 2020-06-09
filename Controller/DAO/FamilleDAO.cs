@@ -51,7 +51,7 @@ namespace Bacchus.DAO
         /// Met a jour la famille dans le BDD
         /// </summary>
         /// <param name="famille">Famille à mettre à jour</param>
-        public static void updateFamille(Famille famille)
+        public static void UpdateFamille(Famille famille)
         {
             Database.RunSql("update Familles set " +
                 "Nom='" + famille.Nom + "'" +
@@ -95,7 +95,7 @@ namespace Bacchus.DAO
         /// Compte le nombre de Famille dans la BDD
         /// </summary>
         /// <returns>Le nombre de Famille</returns>
-        public static int countAllFamille()
+        public static int CountAllFamille()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from Familles;");
 
