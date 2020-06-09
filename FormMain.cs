@@ -264,7 +264,7 @@ namespace Bacchus
                         }
                         break;
                     default:
-                        // Affichage De tous les articles d'un sous familles
+                        // Affichage de tous les articles d'un sous familles
                         listView1.Name = "DescriptionByMarques";
                         listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
                         listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
@@ -313,7 +313,7 @@ namespace Bacchus
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if ( treeView1.SelectedNode.Level == 0)
+                    if (treeView1.SelectedNode.Level == 0)
                     {
                         // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
                         switch (treeView1.SelectedNode.Text)
@@ -323,7 +323,28 @@ namespace Bacchus
                                 UpdateListView();
                                 break;
                             case "Familles":
+                                modifyfamille();
+                                UpdateListView();
+                                break;
+                            case "Marques":
+                                modifyMarque();
+                                UpdateListView();
+                                break;
+                        }
 
+                    }
+                    else
+                    {
+                        // Si on est dans les Familles ou Marques
+                        switch (treeView1.SelectedNode.Parent.Text)
+                        {
+                            case "Familles":
+                                modifySousFamille();
+                                UpdateListView();
+                                break;
+                            default:
+                                modifyArticle();
+                                UpdateListView();
                                 break;
                         }
                     }
@@ -375,16 +396,40 @@ namespace Bacchus
         /// </summary>
         public void modifyArticle()
         {
-            // Recupère la description de l'article sélectionné
-            var descriptionItem = listView1.SelectedItems[0];
-            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
+            // Crée un article avec la description sélectionné
+            Article article = ArticleDAO.getByDescription(listView1.SelectedItems[0].Text);
 
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(article);
             formModif.Show();
-            UpdateListView();
         }
 
+        public void modifyfamille()
+        {
+            Famille famille = FamilleDAO.GetWhereName(listView1.SelectedItems[0].Text);
+
+            FormModifFamilles formModif = new FormModifFamilles();
+            formModif.InitializeDataComponent(famille);
+            formModif.Show();
+        }
+
+        public void modifySousFamille()
+        {
+            SousFamille sousFamille = SousFamilleDAO.GetWhereName(listView1.SelectedItems[0].Text);
+
+            FormModifSousFamille formModif = new FormModifSousFamille();
+            formModif.InitializeDataComponent(sousFamille);
+            formModif.Show();
+        }
+
+        public void modifyMarque()
+        {
+            Marque marque = MarqueDAO.GetWhereName(listView1.SelectedItems[0].Text);
+
+            FormModifMarque formModif = new FormModifMarque();
+            formModif.InitializeDataComponent(marque);
+            formModif.Show();
+        }
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
             if( e.Button == MouseButtons.Right)

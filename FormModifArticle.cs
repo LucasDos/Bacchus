@@ -54,8 +54,8 @@ namespace Bacchus
         /// <param name="e"></param>
         private void valider_btn_Click(object sender, EventArgs e)
         {
-            if( (description_input.Text.Equals("") || prix_input.Text.Equals("")
-                || sousfamille_cbx.Text.Equals("") || marque_cbx.Text.Equals(""))
+            if( description_input.Text.Equals("") || prix_input.Text.Equals("")
+                || sousfamille_cbx.Text.Equals("") || marque_cbx.Text.Equals("") )
             {
                 MessageBox.Show("Veuillez remplir correctement tous les champs !");
             }

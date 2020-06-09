@@ -105,6 +105,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "FormModifFamilles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormModifFamilles";
             this.ResumeLayout(false);
             this.PerformLayout();
