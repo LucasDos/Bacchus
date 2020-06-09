@@ -23,6 +23,7 @@ namespace Bacchus
             InitializeStripView();
         }
 
+                                        /** Fonction d'initialisation */
         /// <summary>
         /// Initialise le composant treeView1
         /// </summary>
@@ -48,17 +49,6 @@ namespace Bacchus
             nbFamille_SSL.Text = "0";
             nbSF_SSL.Text = "0";
             nbMarque_SSL.Text = "0";
-        }
-
-        /// <summary>
-        /// Met à jour la StripView
-        /// </summary>
-        public void UpdateStripView()
-        {
-            nbArticle_SSL.Text = Convert.ToString(ArticleDAO.countAllArticle());
-            nbFamille_SSL.Text = Convert.ToString(FamilleDAO.countAllFamille());
-            nbSF_SSL.Text = Convert.ToString(SousFamilleDAO.countAllSousFamille());
-            nbMarque_SSL.Text = Convert.ToString(MarqueDAO.countAllMarque());
         }
 
         /// <summary>
@@ -96,6 +86,18 @@ namespace Bacchus
             }
         }
 
+                                        /** Controleurs */
+
+        /// <summary>
+        /// Detecte le click sur une node de la treeView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            UpdateListView();
+        }
+
         /// <summary>
         /// Lucas je sais pas ce que c'est, tu peux mettre cette cartouche de com stp
         /// </summary>
@@ -120,13 +122,143 @@ namespace Bacchus
         }
 
         /// <summary>
+        /// Detecte les touche tapé dans la listView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    if (treeView1.SelectedNode.Level == 0)
+                    {
+                        // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
+                        switch (treeView1.SelectedNode.Text)
+                        {
+                            case "Tous les articles":
+                                modifyArticle();
+                                UpdateListView();
+                                break;
+                            case "Familles":
+                                modifyfamille();
+                                UpdateListView();
+                                break;
+                            case "Marques":
+                                modifyMarque();
+                                UpdateListView();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        // Si on est dans les Familles ou Marques
+                        switch (treeView1.SelectedNode.Parent.Text)
+                        {
+                            case "Familles":
+                                modifySousFamille();
+                                UpdateListView();
+                                break;
+                            default:
+                                modifyArticle();
+                                UpdateListView();
+                                break;
+                        }
+                    }
+                    break;
+                case Keys.F5:
+                    UpdateListView();
+                    break;
+                case Keys.Delete:
+                    removeArticle();
+                    UpdateListView();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Detecte le double clique sur une item de la listView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode.Level == 0)
+            {
+                // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
+                switch (treeView1.SelectedNode.Text)
+                {
+                    case "Tous les articles":
+                        modifyArticle();
+                        UpdateListView();
+                        break;
+                    case "Familles":
+                        modifyfamille();
+                        UpdateListView();
+                        break;
+                    case "Marques":
+                        modifyMarque();
+                        UpdateListView();
+                        break;
+                }
+            }
+            else
+            {
+                // Si on est dans les Familles ou Marques
+                switch (treeView1.SelectedNode.Parent.Text)
+                {
+                    case "Familles":
+                        modifySousFamille();
+                        UpdateListView();
+                        break;
+                    default:
+                        modifyArticle();
+                        UpdateListView();
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Detecte le clique droit de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                FormContextMenu contextMenu = new FormContextMenu();
+                Article article = ArticleDAO.getByDescription(listView1.SelectedItems[0].Text);
+                contextMenu.saveArticle(article);
+                contextMenu.ShowDialog();
+
+                UpdateListView();
+                InitializeTreeView();
+            }
+
+        }
+
+                                        /** Foction Update */
+        /// <summary>
+        /// Met à jour la StripView
+        /// </summary>
+        public void UpdateStripView()
+        {
+            nbArticle_SSL.Text = Convert.ToString(ArticleDAO.countAllArticle());
+            nbFamille_SSL.Text = Convert.ToString(FamilleDAO.countAllFamille());
+            nbSF_SSL.Text = Convert.ToString(SousFamilleDAO.countAllSousFamille());
+            nbMarque_SSL.Text = Convert.ToString(MarqueDAO.countAllMarque());
+        }
+
+        /// <summary>
         /// Met a jour la listView1 pour afficher les articles/familles/SousFamilles/Marques
         /// </summary>
         public void UpdateListView()
         {
             listView1.Clear();
 
-            if( (treeView1.SelectedNode.Level == 0) )
+            if ((treeView1.SelectedNode.Level == 0))
             {
                 // Affichage du de la treeView niveau 0 des Articles/Familles/Marques
                 switch (treeView1.SelectedNode.Text)
@@ -144,7 +276,7 @@ namespace Bacchus
                         updateListViewMarques();
                         break;
                 }
-                
+
             }
             else
             {
@@ -152,7 +284,7 @@ namespace Bacchus
                 {
                     case "Familles":
                         // Affichage de tous les articles d'une famille
-                        updateListViewSousFamilles();                        
+                        updateListViewSousFamilles();
                         break;
                     case "Marques":
                         // Affichage de tous les articles d'une marque 
@@ -277,141 +409,7 @@ namespace Bacchus
             }
         }
 
-        /// <summary>
-        /// Detecte le click sur une node de la treeView
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            UpdateListView();
-        }
-
-        /// <summary>
-        /// Detecte les touche tapé dans la listView
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void listView1_KeyUp(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    if (treeView1.SelectedNode.Level == 0)
-                    {
-                        // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
-                        switch (treeView1.SelectedNode.Text)
-                        {
-                            case "Tous les articles":
-                                modifyArticle();
-                                UpdateListView();
-                                break;
-                            case "Familles":
-                                modifyfamille();
-                                UpdateListView();
-                                break;
-                            case "Marques":
-                                modifyMarque();
-                                UpdateListView();
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        // Si on est dans les Familles ou Marques
-                        switch (treeView1.SelectedNode.Parent.Text)
-                        {
-                            case "Familles":
-                                modifySousFamille();
-                                UpdateListView();
-                                break;
-                            default:
-                                modifyArticle();
-                                UpdateListView();
-                                break;
-                        }
-                    }
-                    break;
-                case Keys.F5:
-                    UpdateListView();
-                    break;
-                case Keys.Delete:
-                    removeArticle();
-                    UpdateListView();
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Detecte le double clique sur une item de la listView
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void listView1_DoubleClick(object sender, EventArgs e)
-        {
-            if (treeView1.SelectedNode.Level == 0)
-            {
-                // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
-                switch (treeView1.SelectedNode.Text)
-                {
-                    case "Tous les articles":
-                        modifyArticle();
-                        UpdateListView();
-                        break;
-                    case "Familles":
-                        modifyfamille();
-                        UpdateListView();
-                        break;
-                    case "Marques":
-                        modifyMarque();
-                        UpdateListView();
-                        break;
-                }
-            }
-            else
-            {
-                // Si on est dans les Familles ou Marques
-                switch (treeView1.SelectedNode.Parent.Text)
-                {
-                    case "Familles":
-                        modifySousFamille();
-                        UpdateListView();
-                        break;
-                    default:
-                        modifyArticle();
-                        UpdateListView();
-                        break;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Supprimer l'article sélectionné
-        /// Actualise automatiquement la listView car la ligne sélectionnée n'existe plus
-        /// </summary>
-        public void removeArticle()
-        {
-            var descriptionItem = listView1.SelectedItems[0];
-            var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + descriptionItem + @" ?",
-                    @"Suppression d'un article", MessageBoxButtons.YesNo);
-
-            // Annule la suppression si "non" 
-            if (validationMessage != DialogResult.Yes) 
-            { 
-                return; 
-            }
-
-            // Récupère l'article selectionné dans la BDD
-            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
-            if (article == null)
-            {
-                MessageBox.Show("L'article n'existe pas");
-                return;
-            }
-
-            ArticleDAO.removeArticle(article);
-        }
-
+                                        /** Fenetres modale */
         /// <summary>
         /// Modifie un article
         /// </summary>
@@ -423,7 +421,7 @@ namespace Bacchus
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(article);
             formModif.ShowDialog();
-            
+
             UpdateListView();
         }
 
@@ -469,24 +467,32 @@ namespace Bacchus
             UpdateListView();
         }
 
+                                        /** Autres */
         /// <summary>
-        /// Detecte le clique droit de la souris
+        /// Supprimer l'article sélectionné
+        /// Actualise automatiquement la listView car la ligne sélectionnée n'existe plus
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        public void removeArticle()
         {
-            if( e.Button == MouseButtons.Right)
-            {
-                FormContextMenu contextMenu = new FormContextMenu();
-                Article article = ArticleDAO.getByDescription(listView1.SelectedItems[0].Text);
-                contextMenu.saveArticle(article);
-                contextMenu.ShowDialog();
-                
-                UpdateListView();
-                InitializeTreeView();
+            var descriptionItem = listView1.SelectedItems[0];
+            var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + descriptionItem + @" ?",
+                    @"Suppression d'un article", MessageBoxButtons.YesNo);
+
+            // Annule la suppression si "non" 
+            if (validationMessage != DialogResult.Yes) 
+            { 
+                return; 
             }
 
+            // Récupère l'article selectionné dans la BDD
+            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
+            if (article == null)
+            {
+                MessageBox.Show("L'article n'existe pas");
+                return;
+            }
+
+            ArticleDAO.removeArticle(article);
         }
     }
 }
