@@ -126,34 +126,86 @@ namespace Bacchus
         {
             listView1.Clear();
             List<Article> articles = null;
+            List<Famille> familles = null;
+            List<Marque> marques = null;
 
             if( (treeView1.SelectedNode.Level == 0) )
             {
-                // Affichage de tous les articles
-                listView1.Name = "ArticleListe";
-
-                listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
-                listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
-                listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
-                listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
-
-                articles = ArticleDAO.GetAll();
-
-                if(articles.Count > 0)
+                // Affichage niveau 0 des Articles/Familles/Marques
+                switch (treeView1.SelectedNode.Text)
                 {
-                    foreach (Article article in articles)
-                    {
-                        var row = new string[]
-                        {
-                            article.Description, article.SousFamille.Nom, 
-                            article.Marque.Nom, article.Quantite.ToString()
-                        };
+                    case "Tous les articles":
+                        // Affichage de tous les articles
+                        listView1.Name = "ArticleListe";
 
-                        var lvi = new ListViewItem(row);
-                        lvi.Tag = article;
-                        listView1.Items.Add(lvi);
-                    }
+                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
+
+                        articles = ArticleDAO.GetAll();
+
+                        if (articles.Count > 0)
+                        {
+                            foreach (Article article in articles)
+                            {
+                                var row = new string[]
+                                {
+                                    article.Description, article.SousFamille.Nom,
+                                    article.Marque.Nom, article.Quantite.ToString()
+                                };
+
+                                var lvi = new ListViewItem(row);
+                                lvi.Tag = article;
+                                listView1.Items.Add(lvi);
+                            }
+                        }
+
+                        break;
+                    case "Familles":
+                        // Affichage de toutes les Familles
+                        listView1.Name = "FamilleList";
+
+                        listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+
+                        familles = FamilleDAO.GetAll();
+
+                        if( familles.Count > 0)
+                        {
+                            foreach(Famille famille in familles)
+                            {
+                                var row = new string[] { famille.Nom };
+
+                                var lvi = new ListViewItem(row);
+                                lvi.Tag = famille;
+                                listView1.Items.Add(lvi);
+                            }
+                        }
+
+                        break;
+                    case "Marques":
+                        // Affichage de toutes les Familles
+                        listView1.Name = "MarquesList";
+
+                        listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+
+                        marques = MarqueDAO.GetAll();
+
+                        if (marques.Count > 0)
+                        {
+                            foreach (Marque marque in marques)
+                            {
+                                var row = new string[] { marque.Nom };
+
+                                var lvi = new ListViewItem(row);
+                                lvi.Tag = marque;
+                                listView1.Items.Add(lvi);
+                            }
+                        }
+
+                        break;
                 }
+                
             }
             else
             {
@@ -162,8 +214,8 @@ namespace Bacchus
                     case "Familles":
                         // Affichage de tous les articles d'une famille
 
-                        listView1.Name = "DescriptionByFamilles";
-                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
+                        listView1.Name = "DescriptionSousFamilles";
+                        listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
 
                         Famille famille = FamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
 
@@ -173,25 +225,13 @@ namespace Bacchus
 
                             if(sousFamilles.Count > 0)
                             {
-                                articles = new List<Article>();
-                                foreach (SousFamille indexSF in sousFamilles)
-                                {
-                                    List<Article> tmpArticle = ArticleDAO.getArticleBySousFamille(indexSF);
-                                    foreach (Article indexArticle in tmpArticle)
-                                    {
-                                        articles.Add(indexArticle);
-                                    }
-                                }
 
-                                foreach (Article indexArticles in articles)
+                                foreach (SousFamille sousFam in sousFamilles)
                                 {
-                                    var row = new string[]
-                                    {
-                                        indexArticles.Description
-                                    };
+                                    var row = new string[] { sousFam.Nom };
 
                                     var lvi = new ListViewItem(row);
-                                    lvi.Tag = indexArticles;
+                                    lvi.Tag = sousFam;
                                     listView1.Items.Add(lvi);
                                 }
                             }
@@ -200,8 +240,12 @@ namespace Bacchus
                     case "Marques":
                         // Affichage de tous les articles d'une marque 
 
-                        listView1.Name = "DescriptionByMarques";
+                        listView1.Name = "DescriptionArticlesMarques";
                         listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
+                        listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
 
                         Marque marque = MarqueDAO.GetWhereName(treeView1.SelectedNode.Text);
                         articles = ArticleDAO.getByMarque(marque);
@@ -210,7 +254,8 @@ namespace Bacchus
                         {
                             var row = new string[]
                             {
-                                indexArticles.Description,
+                                indexArticles.Description, indexArticles.SousFamille.Nom,
+                                indexArticles.Marque.Nom, indexArticles.Quantite.ToString()
                             };
 
                             var lvi = new ListViewItem(row);
@@ -219,7 +264,7 @@ namespace Bacchus
                         }
                         break;
                     default:
-                        // Affichage par sous familles
+                        // Affichage De tous les articles d'un sous familles
                         listView1.Name = "DescriptionByMarques";
                         listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
                         listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
