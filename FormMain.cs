@@ -241,16 +241,22 @@ namespace Bacchus
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    // TODO: Modifiy Artcile
                     modifyArticle();
+                    UpdateListView();
                     break;
                 case Keys.F5:
                     UpdateListView();
                     break;
                 case Keys.Delete:
                     removeArticle();
+                    UpdateListView();
                     break;
             }
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            modifyArticle();
         }
 
         /// <summary>
@@ -287,17 +293,11 @@ namespace Bacchus
             // Recupère la description de l'article sélectionné
             var descriptionItem = listView1.SelectedItems[0];
             Article article = ArticleDAO.getByDescription(descriptionItem.Text);
-            if (article == null)
-            {
-                MessageBox.Show("L'article n'existe pas");
-                return;
-            }
 
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(article);
             formModif.Show();
+            UpdateListView();
         }
-
-       
     }
 }
