@@ -59,11 +59,47 @@
     <Compile Include="DAO\FamilleDAO.cs" />
     <Compile Include="DAO\MarqueDAO.cs" />
     <Compile Include="DAO\SousFamilleDAO.cs" />
+    <Compile Include="FormAddArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddArticle.Designer.cs">
+      <DependentUpon>FormAddArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddFamille.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddFamille.Designer.cs">
+      <DependentUpon>FormAddFamille.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddMarque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddMarque.Designer.cs">
+      <DependentUpon>FormAddMarque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddSousFamille.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddSousFamille.Designer.cs">
+      <DependentUpon>FormAddSousFamille.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormContextMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContextMenu.Designer.cs">
+      <DependentUpon>FormContextMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExporter.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormExporter.Designer.cs">
       <DependentUpon>FormExporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormModifArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModifArticle.Designer.cs">
+      <DependentUpon>FormModifArticle.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Bacchus.cs" />
     <Compile Include="FormImporter.cs">
@@ -84,6 +120,21 @@
     <Compile Include="Model\Famille.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddArticle.resx">
+      <DependentUpon>FormAddArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddFamille.resx">
+      <DependentUpon>FormAddFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddMarque.resx">
+      <DependentUpon>FormAddMarque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddSousFamille.resx">
+      <DependentUpon>FormAddSousFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContextMenu.resx">
+      <DependentUpon>FormContextMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormExporter.resx">
       <DependentUpon>FormExporter.cs</DependentUpon>
     </EmbeddedResource>
@@ -92,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModifArticle.resx">
+      <DependentUpon>FormModifArticle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

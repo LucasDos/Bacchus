@@ -77,5 +77,22 @@ namespace Bacchus.DAO
             }
             return null;
         }
+
+        /// <summary>
+        /// Recupère le nombre de Marque dans la BDD
+        /// </summary>
+        /// <returns>Le nombre de Marque</returns>
+        public static int countAllMarque()
+        {
+            SQLiteDataReader count = Database.GetSql("select count(*) from Marques;");
+
+            int res = 0;
+            if( count.Read())
+            {
+                res = count.GetInt32(0);
+            }
+
+            return res;
+        }
     }
 }

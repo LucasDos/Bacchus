@@ -20,6 +20,7 @@ namespace Bacchus
         {
             InitializeComponent();
             InitializeTreeView();
+            InitializeStripView();
         }
 
         /// <summary>
@@ -34,6 +35,30 @@ namespace Bacchus
             addMarques(treeView1.Nodes[2]);
 
             treeView1.EndUpdate();
+
+            UpdateStripView();
+        }
+
+        /// <summary>
+        /// Initialise la StripView
+        /// </summary>
+        public void InitializeStripView()
+        {
+            nbArticle_SSL.Text = "0";
+            nbFamille_SSL.Text = "0";
+            nbSF_SSL.Text = "0";
+            nbMarque_SSL.Text = "0";
+        }
+
+        /// <summary>
+        /// Met à jour la StripView
+        /// </summary>
+        public void UpdateStripView()
+        {
+            nbArticle_SSL.Text = Convert.ToString(ArticleDAO.countAllArticle());
+            nbFamille_SSL.Text = Convert.ToString(FamilleDAO.countAllFamille());
+            nbSF_SSL.Text = Convert.ToString(SousFamilleDAO.countAllSousFamille());
+            nbMarque_SSL.Text = Convert.ToString(MarqueDAO.countAllMarque());
         }
 
         /// <summary>
@@ -224,6 +249,8 @@ namespace Bacchus
                         break;
                 }
             }
+
+            UpdateStripView();
         }
 
         /// <summary>
@@ -234,6 +261,84 @@ namespace Bacchus
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             UpdateListView();
+        }
+
+        private void listView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    modifyArticle();
+                    UpdateListView();
+                    break;
+                case Keys.F5:
+                    UpdateListView();
+                    break;
+                case Keys.Delete:
+                    removeArticle();
+                    UpdateListView();
+                    break;
+            }
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            modifyArticle();
+        }
+
+        /// <summary>
+        /// Supprimer l'article sélectionné
+        /// </summary>
+        public void removeArticle()
+        {
+            var descriptionItem = listView1.SelectedItems[0];
+            var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + descriptionItem + @" ?",
+                    @"Suppression d'un article", MessageBoxButtons.YesNo);
+
+            // Annule la suppression si "non" 
+            if (validationMessage != DialogResult.Yes) 
+            { 
+                return; 
+            }
+
+            // Récupère l'article selectionné dans la BDD
+            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
+            if (article == null)
+            {
+                MessageBox.Show("L'article n'existe pas");
+                return;
+            }
+
+            ArticleDAO.removeArticle(article);
+        }
+
+        /// <summary>
+        /// Modifie un article
+        /// </summary>
+        public void modifyArticle()
+        {
+            // Recupère la description de l'article sélectionné
+            var descriptionItem = listView1.SelectedItems[0];
+            Article article = ArticleDAO.getByDescription(descriptionItem.Text);
+
+            FormModifArticle formModif = new FormModifArticle();
+            formModif.InitializeDataComponent(article);
+            formModif.Show();
+            UpdateListView();
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if( e.Button == MouseButtons.Right)
+            {
+                FormContextMenu contextMenu = new FormContextMenu();
+                Article article = ArticleDAO.getByDescription(listView1.SelectedItems[0].Text);
+                contextMenu.saveArticle(article);
+                contextMenu.Show();
+                
+                UpdateListView();
+            }
+
         }
     }
 }

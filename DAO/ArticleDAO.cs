@@ -41,7 +41,7 @@ namespace Bacchus.DAO
 
                 if(!exists.Read())
                 {
-                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', " + sousFamilleReference + ", " + marqueReference + ", " + Convert.ToInt32(article.Prix) + ", " + article.Quantite + ");");
+                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', '" + sousFamilleReference + "', '" + marqueReference + "', '" + article.Prix + "', '" + article.Quantite + "');");
                 }
                 else
                 {
@@ -69,7 +69,8 @@ namespace Bacchus.DAO
                 string desc = article.GetString(1);
                 int refSFam = article.GetInt32(2);
                 int refMarque = article.GetInt32(3);
-                float prix = article.GetFloat(4);
+                // float prix = article.GetFloat(4); Ne fonctionne pas 
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
 
                 SousFamille sfam = SousFamilleDAO.GetWhereRef(refSFam);
@@ -136,7 +137,7 @@ namespace Bacchus.DAO
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refMarque = article.GetInt32(3);
-                float prix = article.GetFloat(4);
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
 
                 Marque marque = MarqueDAO.GetWhereRef(refMarque);
@@ -162,13 +163,83 @@ namespace Bacchus.DAO
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refSousFamille = article.GetInt32(2);
-                float prix = article.GetFloat(4);
+                float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
                 SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
 
                 list.Add(new Article(reference, desc, sousFamille, marque, prix, quantite));
             }
             return list;
+        }
+        
+        /// <summary>
+        /// Recupère un Article avec sa description
+        /// </summary>
+        /// <param name="descritpion">Description del'Article</param>
+        /// <returns>L'Article</returns>
+        public static Article getByDescription(string descritpion)
+        {
+            SQLiteDataReader article = Database.GetSql("select * from Articles where Description='" + descritpion + "';");
+
+            if(article.Read())
+            {
+                string reference = article.GetString(0);
+                string desc = article.GetString(1);
+                int refSousFamille = article.GetInt32(2);
+                int refMarque = article.GetInt32(3);
+                float prix = Single.Parse(article.GetString(4));
+                int quantite = article.GetInt32(5);
+
+                SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
+                Marque marque = MarqueDAO.GetWhereRef(refMarque);
+
+                return new Article(reference, desc, sousFamille, marque, prix, quantite);
+            }
+
+            return null;
+
+        }
+    
+        /// <summary>
+        /// Supprime un article de la BDD
+        /// </summary>
+        /// <param name="article">Article à supprimer</param>
+        public static void removeArticle(Article article)
+        {
+            SQLiteDataReader res = Database.GetSql("delete from Articles where RefArticle='" + article.Reference + "';");
+        }
+
+        /// <summary>
+        /// Modifie un article existant
+        /// </summary>
+        /// <param name="article">Article à modifier</param>
+        public static void modifyArticle(Article article)
+        {
+            // Bug
+            Database.RunSql("update Articles set " +
+                "Description='" + article.Description + "', " +
+                "RefSousFamille='" + article.SousFamille.RefSousFamille + "', " +
+                "RefMarque='" + article.Marque.Reference + "', " +
+                "PrixHT='" + article.Prix + "', " +
+                "Quantite='" + article.Quantite + "'" +
+                "where RefArticle='" + article.Reference + "'" +
+                ";");
+
+        }
+
+        /// <summary>
+        /// Recupère le nombre d'Artcile dans la BDD
+        /// </summary>
+        /// <returns>Nombre d'Article</returns>
+        public static int countAllArticle()
+        {
+            SQLiteDataReader count = Database.GetSql("select count(*) from Articles;");
+            int res = 0;
+
+            if (count.Read())
+                res = count.GetInt32(0);
+
+            return res;
         }
     }
 }

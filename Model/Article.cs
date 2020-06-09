@@ -13,7 +13,7 @@ namespace Bacchus.Model
         public Famille Famille { get; set; }
         public SousFamille SousFamille { get; set; }
         public Marque Marque { get; set; }
-        public double Prix { get; set; }
+        public float Prix { get; set; }
         public int Quantite { get; set; }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Bacchus.Model
             this.Description = "";
             this.SousFamille = new SousFamille();
             this.Marque = new Marque();
-            this.Prix = 0.0;
+            this.Prix = 0;
             this.Quantite = 0;
         }
 
@@ -38,7 +38,7 @@ namespace Bacchus.Model
         /// <param name="Marque"> marque de l'article </param>
         /// <param name="Prix"> prix de l'article </param>
         /// <param name="Quantite"> quantite de l'article </param>
-        public Article(string Reference, string Description, SousFamille SousFamille, Marque Marque, double Prix, int Quantite)
+        public Article(string Reference, string Description, SousFamille SousFamille, Marque Marque, float Prix, int Quantite)
         {
             this.Reference = Reference;
             this.Description = Description;

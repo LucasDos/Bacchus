@@ -37,6 +37,26 @@ namespace Bacchus.DAO
             return 0;
         }
 
+        public static List<SousFamille> getAll()
+        {
+            SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles;");
+
+            List<SousFamille> list = new List<SousFamille>();
+            while (sousFamille.Read())
+            {
+                int reference = sousFamille.GetInt32(0);
+                int referenceFamille = sousFamille.GetInt32(1);
+                string name = sousFamille.GetString(2);
+
+                Famille famille = FamilleDAO.GetWhereRef(referenceFamille);
+
+                list.Add(new SousFamille(reference, famille, name));
+            }
+
+            return list;
+
+        }
+
         /// <summary>
         /// Récupère une SousFamille par son nom
         /// </summary>
@@ -107,6 +127,17 @@ namespace Bacchus.DAO
             return list;
         }
 
-        
+        public static int countAllSousFamille()
+        {
+            SQLiteDataReader count = Database.GetSql("select count(*) from SousFamilles;");
+
+            int res = 0;
+            if( count.Read())
+            {
+                res = count.GetInt32(0);
+            }
+
+            return res;
+        }
     }
 }
