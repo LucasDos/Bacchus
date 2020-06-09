@@ -19,6 +19,9 @@ namespace Bacchus
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Ajoute une famille dans la BDD
+        /// </summary>
         public void addFamilleSQL()
         {
             Famille famille = new Famille(0, name_input.Text);
@@ -28,11 +31,23 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Detecte quand on clique sur le bouton ajouter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void add_btn_Click(object sender, EventArgs e)
         {
-            addFamilleSQL();
+            if( name_input.Text.Equals(""))
+            {
+                MessageBox.Show("Veuillez remplir correctement tous les champs !");
+            }
+            else
+            {
+                addFamilleSQL();
 
-            this.Close();
+                this.Close();
+            }
         }
     }
 }
