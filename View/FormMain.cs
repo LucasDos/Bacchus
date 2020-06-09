@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 using Bacchus.Model;
 using Bacchus.DAO;
+using Bacchus.Controller;
 
 namespace Bacchus
 {
@@ -493,6 +494,20 @@ namespace Bacchus
             }
 
             ArticleDAO.RemoveArticle(article);
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if(e.Column == 3)
+            {
+                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, SortOrder.Ascending);
+                listView1.ListViewItemSorter = ItemCompare;
+            }
+            else
+            {
+                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, SortOrder.Ascending);
+                listView1.ListViewItemSorter = ItemCompare;
+            }
         }
     }
 }

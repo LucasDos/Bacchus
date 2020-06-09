@@ -25,10 +25,10 @@ namespace Bacchus.Controller
         /// <summary>
         /// Constructeur par de recopie de la colonne
         /// </summary>
-        public ListViewItemComparer(int ColumnToSort)
+        public ListViewItemComparer(int ColumnToSort, SortOrder Order)
         {
             this.SortColumn = ColumnToSort;
-            this. order = SortOrder.Ascending;
+            this. order = Order;
         }
 
         public int Compare(object firstObject, object secondObject)
@@ -41,10 +41,11 @@ namespace Bacchus.Controller
             {
                 case 3:
                     // Si on trie par quantité
-                    int firstItemInt = Convert.ToInt32(firstItem.SubItems[0].Text);
-                    int secondItemInt = Convert.ToInt32(secondItem.SubItems[0].Text);
+                    this.order = SortOrder.Descending;
+                    int firstInt = Convert.ToInt32(firstItem.SubItems[this.SortColumn].Text);
+                    int secondInt = Convert.ToInt32(secondItem.SubItems[this.SortColumn].Text);
 
-                    res = firstItemInt - secondItemInt;
+                    res = firstInt - secondInt;
                     break;
                 default:
                     // Compare les deux chaines de caractères

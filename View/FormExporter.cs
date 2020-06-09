@@ -33,6 +33,9 @@ namespace Bacchus
                     // Récupère le chemin du dossier
                     var folderPath = fbd.SelectedPath + "\\BacchusData.csv";
 
+                    // Vide le fichier
+                    System.IO.File.WriteAllText(folderPath, string.Empty);
+
                     using (StreamWriter writer = new StreamWriter(new FileStream(folderPath, FileMode.OpenOrCreate)))
                     {
                         writer.WriteLine("Description;Ref;Marque;Famille;Sous-Famille;Prix H.T.");
@@ -41,7 +44,8 @@ namespace Bacchus
 
                         while (data.Read())
                         {
-                            String line = data.GetString(0) + ";" + data.GetString(1) + ";" + data.GetString(2) + ";" + data.GetString(3) + ";" + data.GetString(4) + ";" + data.GetFloat(5);
+                            float prixHT = Single.Parse(data.GetString(5));
+                            String line = data.GetString(0) + ";" + data.GetString(1) + ";" + data.GetString(2) + ";" + data.GetString(3) + ";" + data.GetString(4) + ";" + prixHT;
                             writer.WriteLine(line);
                         }
 
