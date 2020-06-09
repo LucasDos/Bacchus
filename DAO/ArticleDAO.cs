@@ -215,7 +215,6 @@ namespace Bacchus.DAO
         /// <param name="article">Article à modifier</param>
         public static void modifyArticle(Article article)
         {
-            // Bug
             Database.RunSql("update Articles set " +
                 "Description='" + article.Description + "', " +
                 "RefSousFamille='" + article.SousFamille.RefSousFamille + "', " +
@@ -224,7 +223,6 @@ namespace Bacchus.DAO
                 "Quantite='" + article.Quantite + "'" +
                 "where RefArticle='" + article.Reference + "'" +
                 ";");
-
         }
 
         /// <summary>

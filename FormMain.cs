@@ -313,8 +313,21 @@ namespace Bacchus
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    modifyArticle();
-                    UpdateListView();
+                    if ( treeView1.SelectedNode.Level == 0)
+                    {
+                        // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
+                        switch (treeView1.SelectedNode.Text)
+                        {
+                            case "Tous les articles":
+                                modifyArticle();
+                                UpdateListView();
+                                break;
+                            case "Familles":
+
+                                break;
+                        }
+                    }
+                    
                     break;
                 case Keys.F5:
                     UpdateListView();
