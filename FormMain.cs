@@ -125,84 +125,23 @@ namespace Bacchus
         public void UpdateListView()
         {
             listView1.Clear();
-            List<Article> articles = null;
-            List<Famille> familles = null;
-            List<Marque> marques = null;
 
             if( (treeView1.SelectedNode.Level == 0) )
             {
-                // Affichage niveau 0 des Articles/Familles/Marques
+                // Affichage du de la treeView niveau 0 des Articles/Familles/Marques
                 switch (treeView1.SelectedNode.Text)
                 {
                     case "Tous les articles":
-                        // Affichage de tous les articles
-                        listView1.Name = "ArticleListe";
-
-                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
-
-                        articles = ArticleDAO.GetAll();
-
-                        if (articles.Count > 0)
-                        {
-                            foreach (Article article in articles)
-                            {
-                                var row = new string[]
-                                {
-                                    article.Description, article.SousFamille.Nom,
-                                    article.Marque.Nom, article.Quantite.ToString()
-                                };
-
-                                var lvi = new ListViewItem(row);
-                                lvi.Tag = article;
-                                listView1.Items.Add(lvi);
-                            }
-                        }
-
+                        // Met a jour l'affichage des articles
+                        updateListViewArticle();
                         break;
                     case "Familles":
-                        // Affichage de toutes les Familles
-                        listView1.Name = "FamilleList";
-
-                        listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
-
-                        familles = FamilleDAO.GetAll();
-
-                        if( familles.Count > 0)
-                        {
-                            foreach(Famille famille in familles)
-                            {
-                                var row = new string[] { famille.Nom };
-
-                                var lvi = new ListViewItem(row);
-                                lvi.Tag = famille;
-                                listView1.Items.Add(lvi);
-                            }
-                        }
-
+                        // Met à jour l'affichage des Familles
+                        updateListViewFamilles();
                         break;
                     case "Marques":
-                        // Affichage de toutes les Familles
-                        listView1.Name = "MarquesList";
-
-                        listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
-
-                        marques = MarqueDAO.GetAll();
-
-                        if (marques.Count > 0)
-                        {
-                            foreach (Marque marque in marques)
-                            {
-                                var row = new string[] { marque.Nom };
-
-                                var lvi = new ListViewItem(row);
-                                lvi.Tag = marque;
-                                listView1.Items.Add(lvi);
-                            }
-                        }
-
+                        // Met à jour l'affichage des Marques
+                        updateListViewMarques();
                         break;
                 }
                 
@@ -213,93 +152,133 @@ namespace Bacchus
                 {
                     case "Familles":
                         // Affichage de tous les articles d'une famille
-
-                        listView1.Name = "DescriptionSousFamilles";
-                        listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
-
-                        Famille famille = FamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
-
-                        if (famille != null)
-                        {
-                            List<SousFamille> sousFamilles = SousFamilleDAO.GetWhereFamilleByRef(famille);
-
-                            if(sousFamilles.Count > 0)
-                            {
-
-                                foreach (SousFamille sousFam in sousFamilles)
-                                {
-                                    var row = new string[] { sousFam.Nom };
-
-                                    var lvi = new ListViewItem(row);
-                                    lvi.Tag = sousFam;
-                                    listView1.Items.Add(lvi);
-                                }
-                            }
-                        }                        
+                        updateListViewSousFamilles();                        
                         break;
                     case "Marques":
                         // Affichage de tous les articles d'une marque 
-
-                        listView1.Name = "DescriptionArticlesMarques";
-                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
-
-                        Marque marque = MarqueDAO.GetWhereName(treeView1.SelectedNode.Text);
-                        articles = ArticleDAO.getByMarque(marque);
-
-                        foreach (Article indexArticles in articles)
-                        {
-                            var row = new string[]
-                            {
-                                indexArticles.Description, indexArticles.SousFamille.Nom,
-                                indexArticles.Marque.Nom, indexArticles.Quantite.ToString()
-                            };
-
-                            var lvi = new ListViewItem(row);
-                            lvi.Tag = indexArticles;
-                            listView1.Items.Add(lvi);
-                        }
+                        updateListViewArticle();
                         break;
                     default:
                         // Affichage de tous les articles d'un sous familles
-                        listView1.Name = "DescriptionByMarques";
-                        listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
-                        listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
-
-                        SousFamille sousFamille = SousFamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
-                        
-                        if(sousFamille != null)
-                        {
-                            articles = ArticleDAO.getArticleBySousFamille(sousFamille);
-
-                            foreach (Article indexArticles in articles)
-                            {
-                                var row = new string[]
-                                {
-                                    indexArticles.Description, indexArticles.SousFamille.Nom,
-                                    indexArticles.Marque.Nom, indexArticles.Quantite.ToString()
-                                };
-
-                                var lvi = new ListViewItem(row);
-                                lvi.Tag = indexArticles;
-                                listView1.Items.Add(lvi);
-                            }
-                        }
-
+                        updateListViewArticle();
                         break;
                 }
             }
 
+            // Met à jour la StripView
             UpdateStripView();
         }
 
         /// <summary>
-        /// Detecte le click sur une node
+        /// Met à jour la listView pour les articles
+        /// </summary>
+        public void updateListViewArticle()
+        {
+            listView1.Name = "ArticleListe";
+
+            listView1.Columns.Add("Description", 400, HorizontalAlignment.Center);
+            listView1.Columns.Add("Sous-Familles", 200, HorizontalAlignment.Center);
+            listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
+            listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
+
+            List<Article> articles = ArticleDAO.GetAll();
+
+            if (articles.Count > 0)
+            {
+                foreach (Article article in articles)
+                {
+                    var row = new string[]
+                    {
+                                    article.Description, article.SousFamille.Nom,
+                                    article.Marque.Nom, article.Quantite.ToString()
+                    };
+
+                    var lvi = new ListViewItem(row);
+                    lvi.Tag = article;
+                    listView1.Items.Add(lvi);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Met à jour la listView pour les Familles
+        /// </summary>
+        public void updateListViewFamilles()
+        {
+            listView1.Name = "FamilleList";
+
+            listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+
+            List<Famille> familles = FamilleDAO.GetAll();
+
+            if (familles.Count > 0)
+            {
+                foreach (Famille famille in familles)
+                {
+                    var row = new string[] { famille.Nom };
+
+                    var lvi = new ListViewItem(row);
+                    lvi.Tag = famille;
+                    listView1.Items.Add(lvi);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Met à jourla listView pour les Marques
+        /// </summary>
+        public void updateListViewMarques()
+        {
+            listView1.Name = "MarquesList";
+
+            listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+
+            List<Marque> marques = MarqueDAO.GetAll();
+
+            if (marques.Count > 0)
+            {
+                foreach (Marque marque in marques)
+                {
+                    var row = new string[] { marque.Nom };
+
+                    var lvi = new ListViewItem(row);
+                    lvi.Tag = marque;
+                    listView1.Items.Add(lvi);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Met à jour la listedes SousFamilles
+        /// </summary>
+        public void updateListViewSousFamilles()
+        {
+            listView1.Name = "DescriptionSousFamilles";
+            listView1.Columns.Add("Description", -2, HorizontalAlignment.Center);
+
+            Famille famille = FamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+
+            if (famille != null)
+            {
+                List<SousFamille> sousFamilles = SousFamilleDAO.GetWhereFamilleByRef(famille);
+
+                if (sousFamilles.Count > 0)
+                {
+
+                    foreach (SousFamille sousFam in sousFamilles)
+                    {
+                        var row = new string[] { sousFam.Nom };
+
+                        var lvi = new ListViewItem(row);
+                        lvi.Tag = sousFam;
+                        listView1.Items.Add(lvi);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Detecte le click sur une node de la treeView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -308,6 +287,11 @@ namespace Bacchus
             UpdateListView();
         }
 
+        /// <summary>
+        /// Detecte les touche tapé dans la listView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView1_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -331,7 +315,6 @@ namespace Bacchus
                                 UpdateListView();
                                 break;
                         }
-
                     }
                     else
                     {
@@ -348,7 +331,6 @@ namespace Bacchus
                                 break;
                         }
                     }
-                    
                     break;
                 case Keys.F5:
                     UpdateListView();
@@ -360,13 +342,52 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Detecte le double clique sur une item de la listView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            modifyArticle();
+            if (treeView1.SelectedNode.Level == 0)
+            {
+                // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
+                switch (treeView1.SelectedNode.Text)
+                {
+                    case "Tous les articles":
+                        modifyArticle();
+                        UpdateListView();
+                        break;
+                    case "Familles":
+                        modifyfamille();
+                        UpdateListView();
+                        break;
+                    case "Marques":
+                        modifyMarque();
+                        UpdateListView();
+                        break;
+                }
+            }
+            else
+            {
+                // Si on est dans les Familles ou Marques
+                switch (treeView1.SelectedNode.Parent.Text)
+                {
+                    case "Familles":
+                        modifySousFamille();
+                        UpdateListView();
+                        break;
+                    default:
+                        modifyArticle();
+                        UpdateListView();
+                        break;
+                }
+            }
         }
 
         /// <summary>
         /// Supprimer l'article sélectionné
+        /// Actualise automatiquement la listView car la ligne sélectionnée n'existe plus
         /// </summary>
         public void removeArticle()
         {
@@ -401,35 +422,58 @@ namespace Bacchus
 
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(article);
-            formModif.Show();
+            formModif.ShowDialog();
+            
+            UpdateListView();
         }
 
+        /// <summary>
+        /// Ouvre une fentre de modification de famille
+        /// </summary>
         public void modifyfamille()
         {
             Famille famille = FamilleDAO.GetWhereName(listView1.SelectedItems[0].Text);
 
             FormModifFamilles formModif = new FormModifFamilles();
             formModif.InitializeDataComponent(famille);
-            formModif.Show();
+            formModif.ShowDialog();
+
+            UpdateListView();
         }
 
+        /// <summary>
+        /// Ouvre une fenetre de modification de SousFamille
+        /// </summary>
         public void modifySousFamille()
         {
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(listView1.SelectedItems[0].Text);
 
             FormModifSousFamille formModif = new FormModifSousFamille();
             formModif.InitializeDataComponent(sousFamille);
-            formModif.Show();
+            formModif.ShowDialog();
+
+            UpdateListView();
         }
 
+        /// <summary>
+        /// Ouvre une fenetre de modification de Marque
+        /// </summary>
         public void modifyMarque()
         {
             Marque marque = MarqueDAO.GetWhereName(listView1.SelectedItems[0].Text);
 
             FormModifMarque formModif = new FormModifMarque();
             formModif.InitializeDataComponent(marque);
-            formModif.Show();
+            formModif.ShowDialog();
+
+            UpdateListView();
         }
+
+        /// <summary>
+        /// Detecte le clique droit de la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listView1_MouseClick(object sender, MouseEventArgs e)
         {
             if( e.Button == MouseButtons.Right)
@@ -437,9 +481,10 @@ namespace Bacchus
                 FormContextMenu contextMenu = new FormContextMenu();
                 Article article = ArticleDAO.getByDescription(listView1.SelectedItems[0].Text);
                 contextMenu.saveArticle(article);
-                contextMenu.Show();
+                contextMenu.ShowDialog();
                 
                 UpdateListView();
+                InitializeTreeView();
             }
 
         }
