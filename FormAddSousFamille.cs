@@ -20,6 +20,9 @@ namespace Bacchus
             InitializeDataComponent();
         }
 
+        /// <summary>
+        /// Initialise la CheckBox des Familles
+        /// </summary>
         public void InitializeDataComponent()
         {
             List<Famille> familles = FamilleDAO.GetAll();
@@ -29,6 +32,9 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Ajoute la SOusFamille dans la SQL
+        /// </summary>
         public void addSousFamilleSQL()
         {
             Famille famille = FamilleDAO.GetWhereName(famille_cbx.Text);
@@ -40,11 +46,23 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// detecte quand on clique sur le bouton Ajouter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void add_button_Click(object sender, EventArgs e)
         {
-            addSousFamilleSQL();
+            if (famille_cbx.Text.Equals("") || name_input.Text.Equals(""))
+            {
+                MessageBox.Show("Veuillez remplir correctement tous les champs !");
+            }
+            else
+            {
+                addSousFamilleSQL();
 
-            this.Close();
+                this.Close();
+            }
         }
     }
 }
