@@ -14,8 +14,6 @@ namespace Bacchus
 {
     public partial class FormAddArticle : Form
     {
-        private List<SousFamille> sousFamilles;
-        private List<Marque> marques;
 
         public FormAddArticle()
         {
@@ -52,7 +50,8 @@ namespace Bacchus
             int quantite = Convert.ToInt32(quantite_input.Value);
             SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
             Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
-
+            Article article = new Article(refArticle, description, sousFamille, marque, prix, quantite);
+            
             if(ArticleDAO.Insert(new Article(refArticle, description, sousFamille, marque, prix, quantite)) == null)
             {
                 MessageBox.Show("L'ajout de l'Article a échoué !");
