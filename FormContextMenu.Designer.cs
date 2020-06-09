@@ -147,6 +147,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "FormContextMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormContextMenu";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

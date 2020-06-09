@@ -78,5 +78,22 @@ namespace Bacchus.DAO
             }
             return null;
         }
+
+        /// <summary>
+        /// Compte le nombre de Famille dans la BDD
+        /// </summary>
+        /// <returns>Le nombre de Famille</returns>
+        public static int countAllFamille()
+        {
+            SQLiteDataReader count = Database.GetSql("select count(*) from Familles;");
+
+            int res = 0;
+            if (count.Read())
+            {
+                res = count.GetInt32(0);
+            }
+
+            return res;
+        }
     }
 }

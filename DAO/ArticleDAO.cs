@@ -172,6 +172,11 @@ namespace Bacchus.DAO
             return list;
         }
         
+        /// <summary>
+        /// Recupère un Article avec sa description
+        /// </summary>
+        /// <param name="descritpion">Description del'Article</param>
+        /// <returns>L'Article</returns>
         public static Article getByDescription(string descritpion)
         {
             SQLiteDataReader article = Database.GetSql("select * from Articles where Description='" + descritpion + "';");
@@ -195,6 +200,10 @@ namespace Bacchus.DAO
 
         }
     
+        /// <summary>
+        /// Supprime un article de la BDD
+        /// </summary>
+        /// <param name="article">Article à supprimer</param>
         public static void removeArticle(Article article)
         {
             SQLiteDataReader res = Database.GetSql("delete from Articles where RefArticle='" + article.Reference + "';");
@@ -216,6 +225,21 @@ namespace Bacchus.DAO
                 "where RefArticle='" + article.Reference + "'" +
                 ";");
 
+        }
+
+        /// <summary>
+        /// Recupère le nombre d'Artcile dans la BDD
+        /// </summary>
+        /// <returns>Nombre d'Article</returns>
+        public static int countAllArticle()
+        {
+            SQLiteDataReader count = Database.GetSql("select count(*) from Articles;");
+            int res = 0;
+
+            if (count.Read())
+                res = count.GetInt32(0);
+
+            return res;
         }
     }
 }

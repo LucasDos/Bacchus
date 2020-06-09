@@ -33,6 +33,8 @@ namespace Bacchus
             addFamilles(treeView1.Nodes[1]);
             addMarques(treeView1.Nodes[2]);
 
+            nbArticle_SSL.Text = Convert.ToString(ArticleDAO.countAllArticle());
+
             treeView1.EndUpdate();
         }
 

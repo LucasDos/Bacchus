@@ -127,6 +127,17 @@ namespace Bacchus.DAO
             return list;
         }
 
-        
+        public static int countAllSousFamille()
+        {
+            SQLiteDataReader count = Database.GetSql("select count(*) from SousFamilles;");
+
+            int res = 0;
+            if( count.Read())
+            {
+                res = count.GetInt32(0);
+            }
+
+            return res;
+        }
     }
 }
