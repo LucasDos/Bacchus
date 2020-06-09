@@ -19,11 +19,21 @@ namespace Bacchus
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initialise les données dans les composants de la fenetre
+        /// </summary>
+        /// <param name="marque"></param>
         public void InitializeDataComponent(Marque marque)
         {
             reference_lbl.Text = Convert.ToString(marque.Reference);
             name_input.Text = marque.Nom;
         }
+
+        /// <summary>
+        /// Detecte le clique sur le bouton Modifier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modify_btn_Click(object sender, EventArgs e)
         {
             if( name_input.Text.Equals(""))

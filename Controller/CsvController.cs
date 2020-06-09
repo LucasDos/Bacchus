@@ -30,10 +30,11 @@ namespace Bacchus
             progressBar.Step = 1;
         }
 
+        /// <summary>
+        /// Lit le fichier CSV
+        /// </summary>
         public void Read()
         {
-            // https://stackoverflow.com/questions/5282999/reading-csv-file-and-storing-values-into-an-array
-
             using (TextFieldParser csvParser = new TextFieldParser(path))
             {
                 csvParser.CommentTokens = new string[] { "#" };
@@ -70,6 +71,9 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Sauvegarde les donnnées dans la BDD
+        /// </summary>
         public void SaveInDb()
         {
             foreach(Article article in data)

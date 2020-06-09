@@ -13,6 +13,9 @@ namespace Bacchus.DAO
         private static String fileName = "Bacchus.SQLite";
         private static String[] tables = new String[]{"Articles", "Familles", "Marques", "SousFamilles"};
 
+        /// <summary>
+        /// Recupère l'instance de la BDD
+        /// </summary>
         public static void GetInstance()
         {
             if(db == null)
@@ -22,6 +25,11 @@ namespace Bacchus.DAO
             }
         }
 
+        /// <summary>
+        /// Envoi une requete SQL et récupère les données
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns>Données de la requete SQL</returns>
         public static SQLiteDataReader GetSql(String sql)
         {
             if(db == null)
@@ -33,6 +41,10 @@ namespace Bacchus.DAO
             return selectCommand.ExecuteReader();
         }
 
+        /// <summary>
+        /// Ennvoi une requete SQLsasrecupération de données
+        /// </summary>
+        /// <param name="sql"></param>
         public static void RunSql(String sql)
         {
             if (db == null)

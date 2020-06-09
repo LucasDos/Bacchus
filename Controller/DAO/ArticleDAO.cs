@@ -82,6 +82,7 @@ namespace Bacchus.DAO
 
             return list;
         }
+        
         /// <summary>
         /// Recupère la Référence d'une SousFamille d'un article
         /// </summary>

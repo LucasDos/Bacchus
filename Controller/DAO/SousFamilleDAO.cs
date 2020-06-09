@@ -144,6 +144,10 @@ namespace Bacchus.DAO
             return list;
         }
 
+        /// <summary>
+        /// Comptele nombre de SousFamilles dans la BDD
+        /// </summary>
+        /// <returns>Lombre de SousFamilles</returns>
         public static int countAllSousFamille()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from SousFamilles;");

@@ -56,6 +56,11 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Detecte le clique sur le bouton ajouter les donnes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_ajout_Click(object sender, EventArgs e)
         {
             if(csvController != null)
@@ -64,6 +69,11 @@ namespace Bacchus
             }
         }
 
+        /// <summary>
+        /// Detecte la clique sur le bouton  ecraser les données
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_ecrase_Click(object sender, EventArgs e)
         {
             if (csvController != null)

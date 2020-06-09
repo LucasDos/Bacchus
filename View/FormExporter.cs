@@ -18,6 +18,11 @@ namespace Bacchus
 
         }
 
+        /// <summary>
+        /// detecte le clique sur le bouton Exporter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, EventArgs e)
         {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())

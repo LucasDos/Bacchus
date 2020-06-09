@@ -20,11 +20,20 @@ namespace Bacchus
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Sauvegarde l'article
+        /// </summary>
+        /// <param name="article"></param>
         public void saveArticle(Article article)
         {
             this.article = article;
         }
 
+        /// <summary>
+        /// Detecte les clique sur le bouton Ajouter Article
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void add_btn_Click_1(object sender, EventArgs e)
         {
             FormAddArticle formAdd = new FormAddArticle();
@@ -33,6 +42,11 @@ namespace Bacchus
             this.Close();
         }
 
+        /// <summary>
+        /// Detecte le clique sur le bouton Modifier Article
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modif_btn_Click_1(object sender, EventArgs e)
         {
             FormModifArticle formModif = new FormModifArticle();
@@ -42,6 +56,11 @@ namespace Bacchus
             this.Close();
         }
 
+        /// <summary>
+        /// Detecte le clique sur le bouton supprimer Article
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void suppr_btn_Click_1(object sender, EventArgs e)
         {
             var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + article.Description + @" ?",
@@ -58,18 +77,33 @@ namespace Bacchus
             this.Close();
         }
 
+        /// <summary>
+        /// Detecte le clique sur le bouton Ajouter Famille
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void famAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddFamille formAddFamille = new FormAddFamille();
             formAddFamille.ShowDialog();
         }
 
+        /// <summary>
+        /// Detecte le clique sur le bouton ajouter SousFamille
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sfAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddSousFamille formSF = new FormAddSousFamille();
             formSF.ShowDialog();
         }
 
+        /// <summary>
+        /// Detecte le clique sur le bouton Ajouter Marque
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void marqueAjout_btn_Click(object sender, EventArgs e)
         {
             FormAddMarque formMarque = new FormAddMarque();
