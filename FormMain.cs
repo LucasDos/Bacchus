@@ -20,6 +20,7 @@ namespace Bacchus
         {
             InitializeComponent();
             InitializeTreeView();
+            InitializeStripView();
         }
 
         /// <summary>
@@ -33,9 +34,31 @@ namespace Bacchus
             addFamilles(treeView1.Nodes[1]);
             addMarques(treeView1.Nodes[2]);
 
-            nbArticle_SSL.Text = Convert.ToString(ArticleDAO.countAllArticle());
-
             treeView1.EndUpdate();
+
+            UpdateStripView();
+        }
+
+        /// <summary>
+        /// Initialise la StripView
+        /// </summary>
+        public void InitializeStripView()
+        {
+            nbArticle_SSL.Text = "0";
+            nbFamille_SSL.Text = "0";
+            nbSF_SSL.Text = "0";
+            nbMarque_SSL.Text = "0";
+        }
+
+        /// <summary>
+        /// Met à jour la StripView
+        /// </summary>
+        public void UpdateStripView()
+        {
+            nbArticle_SSL.Text = Convert.ToString(ArticleDAO.countAllArticle());
+            nbFamille_SSL.Text = Convert.ToString(FamilleDAO.countAllFamille());
+            nbSF_SSL.Text = Convert.ToString(SousFamilleDAO.countAllSousFamille());
+            nbMarque_SSL.Text = Convert.ToString(MarqueDAO.countAllMarque());
         }
 
         /// <summary>
@@ -226,6 +249,8 @@ namespace Bacchus
                         break;
                 }
             }
+
+            UpdateStripView();
         }
 
         /// <summary>
