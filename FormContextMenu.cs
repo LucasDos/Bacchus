@@ -25,24 +25,55 @@ namespace Bacchus
             this.article = article;
         }
 
-        private void add_btn_Click(object sender, EventArgs e)
+        private void add_btn_Click_1(object sender, EventArgs e)
         {
             FormAddArticle formAdd = new FormAddArticle();
             formAdd.Show();
+
+            this.Close();
         }
 
-        private void modif_btn_Click(object sender, EventArgs e)
+        private void modif_btn_Click_1(object sender, EventArgs e)
         {
             FormModifArticle formModif = new FormModifArticle();
             formModif.InitializeDataComponent(this.article);
             formModif.Show();
+
             this.Close();
         }
 
-        private void suppr_btn_Click(object sender, EventArgs e)
+        private void suppr_btn_Click_1(object sender, EventArgs e)
         {
+            var validationMessage = MessageBox.Show(@"Voulez-vous supprimer l'article " + article.Description + @" ?",
+                    @"Suppression d'un article", MessageBoxButtons.YesNo);
+
+            // Annule la suppression si "non" 
+            if (validationMessage != DialogResult.Yes)
+            {
+                return;
+            }
+
             ArticleDAO.removeArticle(this.article);
+
             this.Close();
+        }
+
+        private void famAjout_btn_Click(object sender, EventArgs e)
+        {
+            FormAddFamille formAddFamille = new FormAddFamille();
+            formAddFamille.Show();
+        }
+
+        private void sfAjout_btn_Click(object sender, EventArgs e)
+        {
+            FormAddSousFamille formSF = new FormAddSousFamille();
+            formSF.Show();
+        }
+
+        private void marqueAjout_btn_Click(object sender, EventArgs e)
+        {
+            FormAddMarque formMarque = new FormAddMarque();
+            formMarque.Show();
         }
     }
 }

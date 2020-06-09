@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.reference_input = new System.Windows.Forms.TextBox();
-            this.description_input = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.prix_input = new System.Windows.Forms.TextBox();
-            this.quantite_input = new System.Windows.Forms.NumericUpDown();
-            this.sousfamille_cbx = new System.Windows.Forms.ComboBox();
-            this.marque_cbx = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.valider_btn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.marque_cbx = new System.Windows.Forms.ComboBox();
+            this.sousfamille_cbx = new System.Windows.Forms.ComboBox();
+            this.quantite_input = new System.Windows.Forms.NumericUpDown();
+            this.prix_input = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.description_input = new System.Windows.Forms.RichTextBox();
+            this.reference_input = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quantite_input)).BeginInit();
             this.SuspendLayout();
@@ -67,101 +67,16 @@
             this.panel1.Size = new System.Drawing.Size(382, 353);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // valider_btn
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label1.Location = new System.Drawing.Point(100, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Ajouter un article";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label2.Location = new System.Drawing.Point(8, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Reference : ";
-            // 
-            // reference_input
-            // 
-            this.reference_input.Location = new System.Drawing.Point(105, 58);
-            this.reference_input.Name = "reference_input";
-            this.reference_input.Size = new System.Drawing.Size(265, 22);
-            this.reference_input.TabIndex = 2;
-            // 
-            // description_input
-            // 
-            this.description_input.Location = new System.Drawing.Point(11, 97);
-            this.description_input.Name = "description_input";
-            this.description_input.Size = new System.Drawing.Size(359, 51);
-            this.description_input.TabIndex = 3;
-            this.description_input.Text = "Tapez la description de l\'article ici...";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label3.Location = new System.Drawing.Point(39, 154);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 18);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Prix :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label4.Location = new System.Drawing.Point(273, 154);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 18);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Quantité :";
-            // 
-            // prix_input
-            // 
-            this.prix_input.Location = new System.Drawing.Point(11, 174);
-            this.prix_input.Name = "prix_input";
-            this.prix_input.Size = new System.Drawing.Size(100, 22);
-            this.prix_input.TabIndex = 6;
-            // 
-            // quantite_input
-            // 
-            this.quantite_input.Location = new System.Drawing.Point(287, 174);
-            this.quantite_input.Name = "quantite_input";
-            this.quantite_input.Size = new System.Drawing.Size(57, 22);
-            this.quantite_input.TabIndex = 7;
-            // 
-            // sousfamille_cbx
-            // 
-            this.sousfamille_cbx.FormattingEnabled = true;
-            this.sousfamille_cbx.Location = new System.Drawing.Point(11, 232);
-            this.sousfamille_cbx.Name = "sousfamille_cbx";
-            this.sousfamille_cbx.Size = new System.Drawing.Size(359, 24);
-            this.sousfamille_cbx.TabIndex = 8;
-            // 
-            // marque_cbx
-            // 
-            this.marque_cbx.FormattingEnabled = true;
-            this.marque_cbx.Location = new System.Drawing.Point(11, 285);
-            this.marque_cbx.Name = "marque_cbx";
-            this.marque_cbx.Size = new System.Drawing.Size(359, 24);
-            this.marque_cbx.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.label5.Location = new System.Drawing.Point(8, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(211, 18);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Sélectionnez une Sous Famille";
+            this.valider_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.valider_btn.Location = new System.Drawing.Point(150, 318);
+            this.valider_btn.Name = "valider_btn";
+            this.valider_btn.Size = new System.Drawing.Size(75, 30);
+            this.valider_btn.TabIndex = 12;
+            this.valider_btn.Text = "Ajouter";
+            this.valider_btn.UseVisualStyleBackColor = true;
+            this.valider_btn.Click += new System.EventHandler(this.valider_btn_Click);
             // 
             // label6
             // 
@@ -173,15 +88,101 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Selectionnez une marque";
             // 
-            // valider_btn
+            // label5
             // 
-            this.valider_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.valider_btn.Location = new System.Drawing.Point(150, 318);
-            this.valider_btn.Name = "valider_btn";
-            this.valider_btn.Size = new System.Drawing.Size(75, 25);
-            this.valider_btn.TabIndex = 12;
-            this.valider_btn.Text = "Valider";
-            this.valider_btn.UseVisualStyleBackColor = true;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label5.Location = new System.Drawing.Point(8, 212);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(211, 18);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Sélectionnez une Sous Famille";
+            // 
+            // marque_cbx
+            // 
+            this.marque_cbx.FormattingEnabled = true;
+            this.marque_cbx.Location = new System.Drawing.Point(11, 285);
+            this.marque_cbx.Name = "marque_cbx";
+            this.marque_cbx.Size = new System.Drawing.Size(359, 24);
+            this.marque_cbx.TabIndex = 9;
+            // 
+            // sousfamille_cbx
+            // 
+            this.sousfamille_cbx.FormattingEnabled = true;
+            this.sousfamille_cbx.Location = new System.Drawing.Point(11, 232);
+            this.sousfamille_cbx.Name = "sousfamille_cbx";
+            this.sousfamille_cbx.Size = new System.Drawing.Size(359, 24);
+            this.sousfamille_cbx.TabIndex = 8;
+            // 
+            // quantite_input
+            // 
+            this.quantite_input.Location = new System.Drawing.Point(287, 174);
+            this.quantite_input.Name = "quantite_input";
+            this.quantite_input.Size = new System.Drawing.Size(57, 22);
+            this.quantite_input.TabIndex = 7;
+            // 
+            // prix_input
+            // 
+            this.prix_input.Location = new System.Drawing.Point(11, 174);
+            this.prix_input.Name = "prix_input";
+            this.prix_input.Size = new System.Drawing.Size(100, 22);
+            this.prix_input.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label4.Location = new System.Drawing.Point(273, 154);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 18);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Quantité :";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label3.Location = new System.Drawing.Point(39, 154);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 18);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Prix :";
+            // 
+            // description_input
+            // 
+            this.description_input.Location = new System.Drawing.Point(11, 97);
+            this.description_input.Name = "description_input";
+            this.description_input.Size = new System.Drawing.Size(359, 51);
+            this.description_input.TabIndex = 3;
+            this.description_input.Text = "Tapez la description de l\'article ici...";
+            // 
+            // reference_input
+            // 
+            this.reference_input.Location = new System.Drawing.Point(105, 58);
+            this.reference_input.Name = "reference_input";
+            this.reference_input.Size = new System.Drawing.Size(265, 22);
+            this.reference_input.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label2.Location = new System.Drawing.Point(8, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 18);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Reference : ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label1.Location = new System.Drawing.Point(100, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(175, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Ajouter un article";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormAddArticle
             // 

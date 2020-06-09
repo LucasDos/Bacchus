@@ -28,8 +28,8 @@ namespace Bacchus
 
             sousfamille_cbx.Text = article.SousFamille.Nom;
             // Rempli la comobox de toutes les Sous Familles
-            List<SousFamille> souFamilles = SousFamilleDAO.getAll();
-            foreach(SousFamille sf in souFamilles)
+            List<SousFamille> sousFamilles = SousFamilleDAO.getAll();
+            foreach(SousFamille sf in sousFamilles)
             {
                 sousfamille_cbx.Items.Add(sf.Nom);
             }

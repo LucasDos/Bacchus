@@ -65,6 +65,24 @@
     <Compile Include="FormAddArticle.Designer.cs">
       <DependentUpon>FormAddArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddFamille.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddFamille.Designer.cs">
+      <DependentUpon>FormAddFamille.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddMarque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddMarque.Designer.cs">
+      <DependentUpon>FormAddMarque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddSousFamille.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddSousFamille.Designer.cs">
+      <DependentUpon>FormAddSousFamille.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormContextMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +122,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAddArticle.resx">
       <DependentUpon>FormAddArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddFamille.resx">
+      <DependentUpon>FormAddFamille.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddMarque.resx">
+      <DependentUpon>FormAddMarque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddSousFamille.resx">
+      <DependentUpon>FormAddSousFamille.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormContextMenu.resx">
       <DependentUpon>FormContextMenu.cs</DependentUpon>
