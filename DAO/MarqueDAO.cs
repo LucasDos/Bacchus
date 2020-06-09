@@ -47,6 +47,18 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
+        /// Met à jour une marque dans la BDD
+        /// </summary>
+        /// <param name="marque">Marque à mettre à jour</param>
+        public static void updateMarque(Marque marque)
+        {
+            Database.RunSql("update Marque set" +
+                "Nom='" + marque.Nom + "'" +
+                "where RefMarque='" + marque.Reference + "'" +
+                ";");
+        }
+
+        /// <summary>
         /// Récupère une Marque avec son nom
         /// </summary>
         /// <param name="name">Nom de la marque</param>

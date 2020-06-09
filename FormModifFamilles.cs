@@ -19,16 +19,34 @@ namespace Bacchus
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initialise la fenetre avec les données de la Famille
+        /// </summary>
+        /// <param name="famille">Famille à modifier</param>
         public void InitializeDataComponent(Famille famille)
         {
             referece_lbl.Text = Convert.ToString(famille.Reference);
             name_input.Text = famille.Nom;
         }
 
+        /// <summary>
+        /// Detecte quand on clique sur le bouton modifier
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void modify_btn_Click(object sender, EventArgs e)
         {
-            Famille famille = new Famille(Convert.ToInt32(referece_lbl.Text), name_input.Text);
-            FamilleDAO.updateFamille(famille);
+            if( name_input.Text.Equals(""))
+            {
+                MessageBox.Show("Veuillez remplir correctement les champs !");
+            }
+            else
+            {
+                Famille famille = new Famille(Convert.ToInt32(referece_lbl.Text), name_input.Text);
+                FamilleDAO.updateFamille(famille);
+
+                this.Close();
+            }
         }
     }
 }
