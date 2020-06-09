@@ -43,11 +43,11 @@
             this.nbFamille_SSL = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.nbSF_SSL = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nbMarque_SSL = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.nbMarque_SSL = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -153,6 +153,18 @@
             this.nbSF_SSL.Size = new System.Drawing.Size(17, 20);
             this.nbSF_SSL.Text = "0";
             // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(157, 20);
+            this.toolStripStatusLabel3.Text = "Nombre de Marques : ";
+            // 
+            // nbMarque_SSL
+            // 
+            this.nbMarque_SSL.Name = "nbMarque_SSL";
+            this.nbMarque_SSL.Size = new System.Drawing.Size(17, 20);
+            this.nbMarque_SSL.Text = "0";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -164,7 +176,7 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.treeView1);
             this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.splitContainer1.Panel1MinSize = 100;
+            this.splitContainer1.Panel1MinSize = 200;
             // 
             // splitContainer1.Panel2
             // 
@@ -210,18 +222,6 @@
             this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
             this.listView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.listView1_KeyUp);
             this.listView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseClick);
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(157, 20);
-            this.toolStripStatusLabel3.Text = "Nombre de Marques : ";
-            // 
-            // nbMarque_SSL
-            // 
-            this.nbMarque_SSL.Name = "nbMarque_SSL";
-            this.nbMarque_SSL.Size = new System.Drawing.Size(17, 20);
-            this.nbMarque_SSL.Text = "0";
             // 
             // FormMain
             // 

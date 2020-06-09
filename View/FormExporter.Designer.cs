@@ -89,7 +89,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormExporter";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Exporter les données";
             this.Load += new System.EventHandler(this.FormExporter_Load);
             this.flowLayoutPanel1.ResumeLayout(false);

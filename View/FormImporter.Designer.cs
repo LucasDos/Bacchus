@@ -123,7 +123,7 @@
             this.Controls.Add(this.progressBar1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormImporter";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Importer fichier csv";
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -191,7 +191,7 @@
             this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.panel1);
             this.Name = "FormAddArticle";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormAddArticle";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

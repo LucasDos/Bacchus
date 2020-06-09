@@ -118,7 +118,7 @@ namespace Bacchus
         public void exporterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormExporter formExport = new FormExporter();
-            formExport.Show();
+            formExport.ShowDialog();
         }
 
         /// <summary>

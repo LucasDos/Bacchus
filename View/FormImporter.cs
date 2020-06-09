@@ -44,7 +44,7 @@ namespace Bacchus
                     csvController = new CsvController(path, progressBar1);
                     csvController.Read();
 
-                    using (StreamReader sr = File.OpenText(path));
+                    using (StreamReader sr = File.OpenText(path))
                     {
                         // Parse le chemin d'accès avec le caractère '\'
                         string[] parse = path.Split('\\');
