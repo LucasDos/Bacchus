@@ -37,15 +37,21 @@ namespace Bacchus.DAO
                     marqueReference = GetMarqueRef(article);
                 }
 
+                // Converti le float au format universel ( "9.005")
+                string prix = Convert.ToString(article.Prix);
+                prix = prix.Replace(",", ".");
+
+                
+
                 SQLiteDataReader exists = Database.GetSql("select * from Articles where RefArticle = '" + article.Reference + "';");
 
                 if(exists.Read())
                 {
-                    Database.RunSql("update Articles set Description = '" + article.Description + "', RefSousFamille = '" + sousFamilleReference + "', RefMarque = '" + marqueReference + "', PrixHT = '" + article.Prix + "', Quantite = '" + article.Quantite + "' where RefArticle = '" + article.Reference + "';");
+                    Database.RunSql("update Articles set Description = '" + article.Description + "', RefSousFamille = '" + sousFamilleReference + "', RefMarque = '" + marqueReference + "', PrixHT = '" + prix + "', Quantite = '" + article.Quantite + "' where RefArticle = '" + article.Reference + "';");
                 }
                 else
                 {
-                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', '" + sousFamilleReference + "', '" + marqueReference + "', '" + article.Prix + "', '" + article.Quantite + "');");
+                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', '" + sousFamilleReference + "', '" + marqueReference + "', '" + prix + "', '" + article.Quantite + "');");
                 }
 
                 return article.Reference;
@@ -69,8 +75,7 @@ namespace Bacchus.DAO
                 string desc = article.GetString(1);
                 int refSFam = article.GetInt32(2);
                 int refMarque = article.GetInt32(3);
-                //float prix = article.GetFloat(4); //Ne fonctionne pas 
-                float prix = Single.Parse(article.GetString(4));
+                float prix = article.GetFloat(4);
                 int quantite = article.GetInt32(5);
 
                 SousFamille sfam = SousFamilleDAO.GetWhereRef(refSFam);
@@ -138,7 +143,7 @@ namespace Bacchus.DAO
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refMarque = article.GetInt32(3);
-                float prix = Single.Parse(article.GetString(4));
+                float prix = article.GetFloat(4);
                 int quantite = article.GetInt32(5);
 
                 Marque marque = MarqueDAO.GetWhereRef(refMarque);
@@ -164,7 +169,7 @@ namespace Bacchus.DAO
                 string reference = article.GetString(0);
                 string desc = article.GetString(1);
                 int refSousFamille = article.GetInt32(2);
-                float prix = Single.Parse(article.GetString(4));
+                float prix = article.GetFloat(4);
                 int quantite = article.GetInt32(5);
                 SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
 
@@ -188,7 +193,7 @@ namespace Bacchus.DAO
                 string desc = article.GetString(1);
                 int refSousFamille = article.GetInt32(2);
                 int refMarque = article.GetInt32(3);
-                float prix = Single.Parse(article.GetString(4));
+                float prix = article.GetFloat(4);
                 int quantite = article.GetInt32(5);
 
                 SousFamille sousFamille = SousFamilleDAO.GetWhereRef(refSousFamille);
