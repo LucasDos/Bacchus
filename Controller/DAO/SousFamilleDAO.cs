@@ -68,19 +68,6 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Met à jour une <b>SousFamille</b> de la BDD
-        /// </summary>
-        /// <param name="sousFamille"><b>SousFamille</b> à mettre à jour</param>
-        public static void UpdateSousFamille(SousFamille sousFamille)
-        {
-            Database.RunSql("update SousFamilles set " +
-                "Nom='" + sousFamille.Nom + "', " +
-                "RefFamille='" + sousFamille.RefFamille.Reference + "'" +
-                "where RefSousFamille='" + sousFamille.RefSousFamille + "'" +
-                ";");
-        }
-
-        /// <summary>
         /// Récupère une <b>SousFamille</b> par son nom dans la BDD
         /// </summary>
         /// <param name="name">Nom de la <b>SousFamille</b></param>

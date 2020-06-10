@@ -38,7 +38,7 @@ namespace Bacchus
         {
             if( name_input.Text.Equals(""))
             {
-                MessageBox.Show("Veuillez remplir correctement les champs !");
+                MessageBox.Show("Veuillez rentrer un nom différent.");
             }
             else
             {

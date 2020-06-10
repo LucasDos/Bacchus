@@ -32,7 +32,7 @@ namespace Bacchus
 
             if( MarqueDAO.Insert(marque) == 0)
             {
-                MessageBox.Show("L'ajout de la Marque a échoué !");
+                MessageBox.Show("Cette Marque existe déjà.");
             }
         }
 
