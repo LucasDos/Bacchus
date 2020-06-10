@@ -31,6 +31,12 @@ namespace Bacchus.Controller
             this. order = Order;
         }
 
+        /// <summary>
+        /// Compare deux objets
+        /// </summary>
+        /// <param name="firstObject"></param>
+        /// <param name="secondObject"></param>
+        /// <returns>Entier de comparaison (négatifs si secondObject > firstObject)</returns>
         public int Compare(object firstObject, object secondObject)
         {
             int res = 0;
