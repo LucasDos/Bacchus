@@ -10,10 +10,10 @@ namespace Bacchus.DAO
 {
     class FamilleDAO
     {
-         /// <summary>
-         /// Récupère toutes les Familles de la BDD
-         /// </summary>
-         /// <returns>Liste des Familles</returns>
+        /// <summary>
+        /// Récupère toutes les <b>Familles</b> de la BDD
+        /// </summary>
+        /// <returns>Liste des <b>Familles</b></returns>
         public static List<Famille> GetAll()
         {
             SQLiteDataReader famille = Database.GetSql("select * from Familles;");
@@ -28,10 +28,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Ajoute une famille dans la BDD
+        /// Ajoute une <b>Famille</b> dans la BDD
         /// </summary>
-        /// <param name="famille">Famille à ajouter</param>
-        /// <returns>La référence de la Famille</returns>
+        /// <param name="famille"><b>Famille</b> à ajouter</param>
+        /// <returns>La référence de la <b>Famille</b></returns>
         public static int Insert(Famille famille)
         {
             if (famille != null)
@@ -48,9 +48,9 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Met a jour la famille dans le BDD
+        /// Met a jour la <b>Famille</b> dans le BDD
         /// </summary>
-        /// <param name="famille">Famille à mettre à jour</param>
+        /// <param name="famille"><b>Famille</b> à mettre à jour</param>
         public static void UpdateFamille(Famille famille)
         {
             Database.RunSql("update Familles set " +
@@ -60,10 +60,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Récupère une Famille avec le Nom
+        /// Récupère une <b>Famille</b> avec le Nom
         /// </summary>
-        /// <param name="name">Nom de la Famille à chercher</param>
-        /// <returns>La Famille</returns>
+        /// <param name="name">Nom de la <b>Famille</b> à chercher</param>
+        /// <returns>La <b>Famille</b></returns>
         public static Famille GetWhereName(String name)
         {
             SQLiteDataReader famille = Database.GetSql("select * from Familles where Nom = '" + name + "';");
@@ -76,10 +76,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Récupère la Famille avec la Référence
+        /// Récupère la <b>Famille</b> avec la Référence
         /// </summary>
-        /// <param name="reference">Référence de la Famille à chercher</param>
-        /// <returns>La Famille</returns>
+        /// <param name="reference">Référence de la <b>Famille</b> à chercher</param>
+        /// <returns>La <b>Famille</b></returns>
         public static Famille GetWhereRef(int reference)
         {
             SQLiteDataReader famille = Database.GetSql("select * from Familles where RefFamille = '" + reference + "';");
@@ -92,9 +92,9 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Compte le nombre de Famille dans la BDD
+        /// Compte le nombre de <b>Famille</b> dans la BDD
         /// </summary>
-        /// <returns>Le nombre de Famille</returns>
+        /// <returns>Le nombre de <b>Famille</b></returns>
         public static int CountAllFamille()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from Familles;");
