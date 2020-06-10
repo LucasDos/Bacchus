@@ -243,7 +243,38 @@ namespace Bacchus
 
         }
 
-                                        /** Foction Update */
+        /// <summary>
+        /// Détecte le click sur une colonne
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Inverse le sens du trie
+            if (Order == SortOrder.Descending)
+            {
+                this.Order = SortOrder.Ascending;
+            }
+            else
+            {
+                this.Order = SortOrder.Descending;
+            }
+
+            if (e.Column == 3)
+            {
+                // Trie par Entier
+                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, this.Order);
+                listView1.ListViewItemSorter = ItemCompare;
+            }
+            else
+            {
+                // Trie par Ordre alphabétique
+                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, this.Order);
+                listView1.ListViewItemSorter = ItemCompare;
+            }
+        }
+
+        /** Foction Update */
         /// <summary>
         /// Met à jour la StripView
         /// </summary>
@@ -524,32 +555,6 @@ namespace Bacchus
             }
 
             ArticleDAO.RemoveArticle(article);
-        }
-
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
-        {
-            // Inverse le sens du trie
-            if(Order == SortOrder.Descending)
-            {
-                this.Order = SortOrder.Ascending;
-            }
-            else
-            {
-                this.Order = SortOrder.Descending;
-            }
-
-            if(e.Column == 3)
-            {
-                // Trie par Entier
-                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, this.Order);
-                listView1.ListViewItemSorter = ItemCompare;
-            }
-            else
-            {
-                // Trie par Ordre alphabétique
-                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, this.Order);
-                listView1.ListViewItemSorter = ItemCompare;
-            }
         }
     }
 }
