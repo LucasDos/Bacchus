@@ -34,8 +34,13 @@ namespace Bacchus
         /// </summary>
         public void InitializeTreeView()
         {
-            
+            treeView1.Nodes.Clear();
             treeView1.BeginUpdate();
+
+            // Initialise les Nodes 
+            treeView1.Nodes.Add("Tous les articles");
+            treeView1.Nodes.Add("Familles");
+            treeView1.Nodes.Add("Marques");
 
             AddFamilles(treeView1.Nodes[1]);
             AddMarques(treeView1.Nodes[2]);
@@ -43,6 +48,7 @@ namespace Bacchus
             treeView1.EndUpdate();
 
             UpdateStripView();
+            UpdateListView();
         }
 
         /// <summary>
@@ -304,48 +310,57 @@ namespace Bacchus
         {
             listView1.Clear();
             List<Article> articles = null;
-            
-            if ((treeView1.SelectedNode.Level == 0) && (treeView1.SelectedNode.Parent == null))
-            {
-                // Affichage du de la treeView niveau 0 des Articles/Familles/Marques
-                switch (treeView1.SelectedNode.Text)
-                {
-                    case "Tous les articles":
-                        // Met a jour l'affichage des articles
-                        articles = ArticleDAO.GetAll();
-                        UpdateListViewArticle(articles);
-                        break;
-                    case "Familles":
-                        // Met à jour l'affichage des Familles
-                        UpdateListViewFamilles();
-                        break;
-                    case "Marques":
-                        // Met à jour l'affichage des Marques
-                        UpdateListViewMarques();
-                        break;
-                }
 
+            // Initialisation des données 
+            if (treeView1.SelectedNode == null)
+            {
+                articles = ArticleDAO.GetAll();
+                UpdateListViewArticle(articles);
             }
             else
             {
-                switch (treeView1.SelectedNode.Parent.Text)
+                if ((treeView1.SelectedNode.Level == 0) && (treeView1.SelectedNode.Parent == null))
                 {
-                    case "Familles":
-                        // Affichage de tous les articles d'une famille
-                        UpdateListViewSousFamilles();
-                        break;
-                    case "Marques":
-                        // Affichage de tous les articles d'une marque
-                        Marque marque = MarqueDAO.GetWhereName(treeView1.SelectedNode.Text);
+                    // Affichage du de la treeView niveau 0 des Articles/Familles/Marques
+                    switch (treeView1.SelectedNode.Text)
+                    {
+                        case "Tous les articles":
+                            // Met a jour l'affichage des articles
+                            articles = ArticleDAO.GetAll();
+                            UpdateListViewArticle(articles);
+                            break;
+                        case "Familles":
+                            // Met à jour l'affichage des Familles
+                            UpdateListViewFamilles();
+                            break;
+                        case "Marques":
+                            // Met à jour l'affichage des Marques
+                            UpdateListViewMarques();
+                            break;
+                    }
 
-                        UpdateListViewArticleByMarque(marque);
-                        break;
-                    default:
-                        // Affichage de tous les articles d'un sous familles
-                        SousFamille sousFamille = SousFamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+                }
+                else
+                {
+                    switch (treeView1.SelectedNode.Parent.Text)
+                    {
+                        case "Familles":
+                            // Affichage de tous les articles d'une famille
+                            UpdateListViewSousFamilles();
+                            break;
+                        case "Marques":
+                            // Affichage de tous les articles d'une marque
+                            Marque marque = MarqueDAO.GetWhereName(treeView1.SelectedNode.Text);
 
-                        UpdateListViewArticleBySousFamille(sousFamille);
-                        break;
+                            UpdateListViewArticleByMarque(marque);
+                            break;
+                        default:
+                            // Affichage de tous les articles d'un sous familles
+                            SousFamille sousFamille = SousFamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+
+                            UpdateListViewArticleBySousFamille(sousFamille);
+                            break;
+                    }
                 }
             }
 

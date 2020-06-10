@@ -38,7 +38,7 @@ namespace Bacchus
         {
             if( name_input.Text.Equals(""))
             {
-                MessageBox.Show("Veuillez remplir correctement les champs !");
+                MessageBox.Show("Veuillez rentrer un nom différent.");
             }
             else
             {
@@ -48,7 +48,7 @@ namespace Bacchus
                 name = name.Replace(@"'", "");
 
                 Marque marque = new Marque(Convert.ToInt32(reference_lbl.Text), name);
-                MarqueDAO.UpdateMarque(marque);
+                MarqueDAO.Insert(marque);
 
                 this.Close();
             }

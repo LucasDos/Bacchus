@@ -31,7 +31,7 @@ namespace Bacchus
             Famille famille = new Famille(0, name);
             if ( FamilleDAO.Insert(famille)==0)
             {
-                MessageBox.Show("L'ajout de la Famille a échoué !");
+                MessageBox.Show("Cette Famille exist déjà.");
             }
         }
 

@@ -35,6 +35,12 @@ namespace Bacchus.DAO
         {
             if(marque != null)
             {
+                //Vérifie si la Marque existe
+                if ( GetWhereName(marque.Nom) != null)
+                {
+                    return 0;
+                }
+
                 Database.RunSql("insert into Marques('Nom') values('" + marque.Nom + "');");
                 SQLiteDataReader added = Database.GetSql("select max(RefMarque) from Marques;");
 
@@ -44,18 +50,6 @@ namespace Bacchus.DAO
                 }
             }
             return 0;
-        }
-
-        /// <summary>
-        /// Met à jour une <b>Marque</b> dans la BDD
-        /// </summary>
-        /// <param name="marque"><b>Marque</b> à mettre à jour</param>
-        public static void UpdateMarque(Marque marque)
-        {
-            Database.RunSql("update Marque set" +
-                "Nom='" + marque.Nom + "'" +
-                "where RefMarque='" + marque.Reference + "'" +
-                ";");
         }
 
         /// <summary>

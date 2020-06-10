@@ -19,6 +19,12 @@ namespace Bacchus.DAO
         {
             if (sousFamille != null)
             {
+                // Vérifie si la Sous Famille existe déjà
+                if( GetWhereName(sousFamille.Nom) != null)
+                {
+                    return 0;
+                }
+
                 int reference = sousFamille.RefFamille.Reference;
                 if (sousFamille.RefFamille.Reference == 0)
                 {
@@ -59,19 +65,6 @@ namespace Bacchus.DAO
 
             return list;
 
-        }
-
-        /// <summary>
-        /// Met à jour une <b>SousFamille</b> de la BDD
-        /// </summary>
-        /// <param name="sousFamille"><b>SousFamille</b> à mettre à jour</param>
-        public static void UpdateSousFamille(SousFamille sousFamille)
-        {
-            Database.RunSql("update SousFamilles set " +
-                "Nom='" + sousFamille.Nom + "', " +
-                "RefFamille='" + sousFamille.RefFamille.Reference + "'" +
-                "where RefSousFamille='" + sousFamille.RefSousFamille + "'" +
-                ";");
         }
 
         /// <summary>

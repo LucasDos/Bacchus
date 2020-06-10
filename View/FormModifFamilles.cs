@@ -38,7 +38,7 @@ namespace Bacchus
         {
             if( name_input.Text.Equals(""))
             {
-                MessageBox.Show("Veuillez remplir correctement les champs !");
+                MessageBox.Show("Veuillez rentrer un nom différent.");
             }
             else
             {
@@ -48,7 +48,7 @@ namespace Bacchus
                 name = name.Replace(@"'", "");
 
                 Famille famille = new Famille(Convert.ToInt32(referece_lbl.Text), name);
-                FamilleDAO.UpdateFamille(famille);
+                FamilleDAO.Insert(famille);
 
                 this.Close();
             }
