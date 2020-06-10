@@ -36,6 +36,11 @@ namespace Bacchus.DAO
         {
             if (famille != null)
             {
+                // Vérifie si la Famille exist
+                if ( GetWhereName(famille.Nom) != null)
+                {
+                    return 0;
+                }
                 Database.RunSql("insert into Familles('Nom') values('" + famille.Nom + "');");
                 SQLiteDataReader added = Database.GetSql("select max(RefFamille) from Familles;");
 
@@ -45,18 +50,6 @@ namespace Bacchus.DAO
                 }
             }
             return 0;
-        }
-
-        /// <summary>
-        /// Met a jour la <b>Famille</b> dans le BDD
-        /// </summary>
-        /// <param name="famille"><b>Famille</b> à mettre à jour</param>
-        public static void UpdateFamille(Famille famille)
-        {
-            Database.RunSql("update Familles set " +
-                "Nom='" + famille.Nom + "'" +
-                "where RefFamille='" + famille.Reference + "'" +
-                ";");
         }
 
         /// <summary>

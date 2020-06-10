@@ -48,7 +48,7 @@ namespace Bacchus
                 name = name.Replace(@"'", "");
 
                 Famille famille = new Famille(Convert.ToInt32(referece_lbl.Text), name);
-                FamilleDAO.UpdateFamille(famille);
+                FamilleDAO.Insert(famille);
 
                 this.Close();
             }
