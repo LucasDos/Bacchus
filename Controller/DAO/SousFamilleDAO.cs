@@ -11,10 +11,10 @@ namespace Bacchus.DAO
     class SousFamilleDAO
     {
         /// <summary>
-        /// Ajoute une SousFamille dans la BDD
+        /// Ajoute une <b>SousFamille</b> dans la BDD
         /// </summary>
-        /// <param name="sousFamille">SousFamille à ajouter</param>
-        /// <returns>La référence de la SousFamille</returns>
+        /// <param name="sousFamille"><b>SousFamille</b> à ajouter</param>
+        /// <returns>La référence de la <b>SousFamille</b></returns>
         public static int Insert(SousFamille sousFamille)
         {
             if (sousFamille != null)
@@ -38,9 +38,9 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Recupère toutes les SousFamilles de la BDD
+        /// Recupère toutes les <b>SousFamilles</b> de la BDD
         /// </summary>
-        /// <returns>Liste des SousFamilles</returns>
+        /// <returns>Liste des <b>SousFamilles</b></returns>
         public static List<SousFamille> GetAll()
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles;");
@@ -62,9 +62,9 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Met a jour une SousFamille de la BDD
+        /// Met à jour une <b>SousFamille</b> de la BDD
         /// </summary>
-        /// <param name="sousFamille">SousFamille à mettre à jour</param>
+        /// <param name="sousFamille"><b>SousFamille</b> à mettre à jour</param>
         public static void UpdateSousFamille(SousFamille sousFamille)
         {
             Database.RunSql("update SousFamilles set " +
@@ -75,10 +75,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Récupère une SousFamille par son nom
+        /// Récupère une <b>SousFamille</b> par son nom dans la BDD
         /// </summary>
-        /// <param name="name">Nom de la SousFamille</param>
-        /// <returns>La SousFamille</returns>
+        /// <param name="name">Nom de la <b>SousFamille</b></param>
+        /// <returns>La <b>SousFamille</b></returns>
         public static SousFamille GetWhereName(String name)
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where Nom = '" + name + "';");
@@ -91,10 +91,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Récupère une SousFamille
+        /// Récupère une <b>SousFamille</b> dans la BDD
         /// </summary>
-        /// <param name="reference">La Référence de la SousFamille</param>
-        /// <returns>La SousFamille</returns>
+        /// <param name="reference">La Référence de la <b>SousFamille</b></param>
+        /// <returns>La <b>SousFamille</b></returns>
         public static SousFamille GetWhereRef(int reference)
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefSousFamille = '" + reference + "';");
@@ -108,10 +108,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Récupère la Référence d'une SousFamille
+        /// Récupère la Référence d'une <b>SousFamille</b>
         /// </summary>
-        /// <param name="sousFamille">La SousFamille</param>
-        /// <returns>La SousFamille</returns>
+        /// <param name="sousFamille">La <b>SousFamille</b></param>
+        /// <returns>La <b>SousFamille</b></returns>
         private static int GetFamilleRef(SousFamille sousFamille)
         {
             Famille famille = FamilleDAO.GetWhereName(sousFamille.RefFamille.Nom);
@@ -128,10 +128,10 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Récupère toutes les SousFamilles d'une Famille
+        /// Récupère toutes les <b>SousFamilles</b> d'une <b>Famille</b>
         /// </summary>
-        /// <param name="famille">La Famille</param>
-        /// <returns>Liste des SousFamilles</returns>
+        /// <param name="famille">La <b>Famille</b></param>
+        /// <returns>Liste des <b>SousFamilles</b></returns>
         public static List<SousFamille> GetWhereFamilleByRef(Famille famille)
         {
             SQLiteDataReader sousFamille = Database.GetSql("select * from SousFamilles where RefFamille = '" + famille.Reference + "';");
@@ -145,9 +145,9 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Comptele nombre de SousFamilles dans la BDD
+        /// Compte le nombre de <b>SousFamilles</b> dans la BDD
         /// </summary>
-        /// <returns>Lombre de SousFamilles</returns>
+        /// <returns>Lombre de <b>SousFamilles</b></returns>
         public static int CountAllSousFamille()
         {
             SQLiteDataReader count = Database.GetSql("select count(*) from SousFamilles;");
