@@ -17,6 +17,7 @@ namespace Bacchus
 {
     partial class FormMain : Form
     {
+        // Ordre de trie pour detecter le changement d'ordre
         private SortOrder Order;
         public FormMain()
         {
