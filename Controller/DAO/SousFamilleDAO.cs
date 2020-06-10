@@ -19,6 +19,12 @@ namespace Bacchus.DAO
         {
             if (sousFamille != null)
             {
+                // Vérifie si la Sous Famille existe déjà
+                if( GetWhereName(sousFamille.Nom) != null)
+                {
+                    return 0;
+                }
+
                 int reference = sousFamille.RefFamille.Reference;
                 if (sousFamille.RefFamille.Reference == 0)
                 {

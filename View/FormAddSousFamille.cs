@@ -46,7 +46,7 @@ namespace Bacchus
 
             if (SousFamilleDAO.Insert(sousFamille) == 0)
             {
-                MessageBox.Show("L'ajout de la SOus Famille a échoué !");
+                MessageBox.Show("Cette Sous Famille existe déjà.");
             }
         }
 
