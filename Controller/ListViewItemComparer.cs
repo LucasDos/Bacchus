@@ -41,15 +41,26 @@ namespace Bacchus.Controller
             {
                 case 3:
                     // Si on trie par quantité
-                    this.order = SortOrder.Descending;
                     int firstInt = Convert.ToInt32(firstItem.SubItems[this.SortColumn].Text);
                     int secondInt = Convert.ToInt32(secondItem.SubItems[this.SortColumn].Text);
 
                     res = secondInt - firstInt;
+
+                    if (this.order == SortOrder.Descending)
+                    {
+                        res = -res;
+                    }
+                    
                     break;
                 default:
                     // Compare les deux chaines de caractères
                     res = String.Compare(firstItem.SubItems[this.SortColumn].Text, secondItem.SubItems[this.SortColumn].Text);
+                    
+                    if (this.order == SortOrder.Descending)
+                    {
+                        res = -res;
+                    }
+
                     break;
             }
 

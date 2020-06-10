@@ -17,11 +17,14 @@ namespace Bacchus
 {
     partial class FormMain : Form
     {
+        // Ordre de trie pour detecter le changement d'ordre
+        private SortOrder Order;
         public FormMain()
         {
             InitializeComponent();
             InitializeTreeView();
             InitializeStripView();
+            this.Order = SortOrder.Descending;
         }
 
                                         /** Fonction d'initialisation */
@@ -525,14 +528,26 @@ namespace Bacchus
 
         private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
         {
+            // Inverse le sens du trie
+            if(Order == SortOrder.Descending)
+            {
+                this.Order = SortOrder.Ascending;
+            }
+            else
+            {
+                this.Order = SortOrder.Descending;
+            }
+
             if(e.Column == 3)
             {
-                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, SortOrder.Ascending);
+                // Trie par Entier
+                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, this.Order);
                 listView1.ListViewItemSorter = ItemCompare;
             }
             else
             {
-                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, SortOrder.Ascending);
+                // Trie par Ordre alphabétique
+                ListViewItemComparer ItemCompare = new ListViewItemComparer(e.Column, this.Order);
                 listView1.ListViewItemSorter = ItemCompare;
             }
         }
