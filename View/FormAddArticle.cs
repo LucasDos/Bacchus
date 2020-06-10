@@ -44,17 +44,28 @@ namespace Bacchus
         /// </summary>
         public void AddArticleSQL()
         {
+            // Récupère tous les données des text_input
             string refArticle = reference_input.Text;
             string description = description_input.Text;
-            float prix = Single.Parse(prix_input.Text);
+            string stringPrix = prix_input.Text;
             int quantite = Convert.ToInt32(quantite_input.Value);
-            SousFamille sousFamille = SousFamilleDAO.GetWhereName(sousfamille_cbx.Text);
-            Marque marque = MarqueDAO.GetWhereName(marque_cbx.Text);
+            string stringSF = sousfamille_cbx.Text;
+            string stringMarque = marque_cbx.Text;
 
-            // Retire les ' des input
+            // Retire les ' des input et les . pour les prix
             refArticle = refArticle.Replace(@"'", "");
             description = description.Replace(@"'", "");
-            
+            stringPrix = stringPrix.Replace(@"'", "");
+            stringPrix = stringPrix.Replace(@".", ",");
+            stringSF = stringSF.Replace(@"'", "");
+            stringMarque = stringMarque.Replace(@"'", "");
+
+            // Recupère les données utiles pour créer l'Article
+            float prix = Single.Parse(stringPrix);
+            SousFamille sousFamille = SousFamilleDAO.GetWhereName(stringSF);
+            Marque marque = MarqueDAO.GetWhereName(stringMarque);
+
+
             Article article = new Article(refArticle, description, sousFamille, marque, prix, quantite);
             
             if(ArticleDAO.Insert(new Article(refArticle, description, sousFamille, marque, prix, quantite)) == null)

@@ -216,22 +216,6 @@ namespace Bacchus.DAO
         }
 
         /// <summary>
-        /// Modifie un <b>Article</b> existant
-        /// </summary>
-        /// <param name="article"><b>Article</b> à modifier</param>
-        public static void ModifyArticle(Article article)
-        {
-            Database.RunSql("update Articles set " +
-                "Description='" + article.Description + "', " +
-                "RefSousFamille='" + article.SousFamille.RefSousFamille + "', " +
-                "RefMarque='" + article.Marque.Reference + "', " +
-                "PrixHT='" + article.Prix + "', " +
-                "Quantite='" + article.Quantite + "'" +
-                "where RefArticle='" + article.Reference + "'" +
-                ";");
-        }
-
-        /// <summary>
         /// Recupère le nombre d'<b>Artcile</b> dans la BDD
         /// </summary>
         /// <returns>Nombre d'<b>Article</b></returns>

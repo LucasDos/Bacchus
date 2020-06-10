@@ -198,7 +198,7 @@ namespace Bacchus
         /// <param name="e"></param>
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            if (treeView1.SelectedNode.Level == 0)
+            if ((treeView1.SelectedNode.Level == 0) && (treeView1.SelectedNode.Parent == null))
             {
                 // Si on est sur le premier niveau de la listView (Tous les articles / familles / Marques)
                 switch (treeView1.SelectedNode.Text)
@@ -304,8 +304,8 @@ namespace Bacchus
         {
             listView1.Clear();
             List<Article> articles = null;
-
-            if ((treeView1.SelectedNode.Level == 0))
+            
+            if ((treeView1.SelectedNode.Level == 0) && (treeView1.SelectedNode.Parent == null))
             {
                 // Affichage du de la treeView niveau 0 des Articles/Familles/Marques
                 switch (treeView1.SelectedNode.Text)
@@ -566,6 +566,17 @@ namespace Bacchus
             }
 
             ArticleDAO.RemoveArticle(article);
+        }
+
+        /// <summary>
+        /// Détecte quand on quitte la fenetre
+        /// Pour sauvegarder les données
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Database.CloseDb();
         }
     }
 }
