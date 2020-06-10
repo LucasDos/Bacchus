@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.folder_lbl = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,6 +65,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.label1);
             this.flowLayoutPanel1.Controls.Add(this.folder_lbl);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 9);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -80,6 +82,17 @@
             this.folder_lbl.Size = new System.Drawing.Size(10, 15);
             this.folder_lbl.TabIndex = 3;
             this.folder_lbl.Text = " ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(40, 287);
+            this.label2.Margin = new System.Windows.Forms.Padding(40, 100, 3, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(248, 34);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Automatiquement après avoir choisi le chemin du répertoire";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormExporter
             // 
@@ -104,5 +117,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label folder_lbl;
+        private System.Windows.Forms.Label label2;
     }
 }
