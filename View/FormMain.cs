@@ -15,7 +15,7 @@ using Bacchus.Controller;
 
 namespace Bacchus
 {
-    public partial class FormMain : Form
+    partial class FormMain : Form
     {
         public FormMain()
         {
@@ -258,6 +258,7 @@ namespace Bacchus
         public void UpdateListView()
         {
             listView1.Clear();
+            List<Article> articles = null;
 
             if ((treeView1.SelectedNode.Level == 0))
             {
@@ -266,7 +267,8 @@ namespace Bacchus
                 {
                     case "Tous les articles":
                         // Met a jour l'affichage des articles
-                        UpdateListViewArticle();
+                        articles = ArticleDAO.GetAll();
+                        UpdateListViewArticle(articles);
                         break;
                     case "Familles":
                         // Met à jour l'affichage des Familles
@@ -288,12 +290,16 @@ namespace Bacchus
                         UpdateListViewSousFamilles();
                         break;
                     case "Marques":
-                        // Affichage de tous les articles d'une marque 
-                        UpdateListViewArticle();
+                        // Affichage de tous les articles d'une marque
+                        Marque marque = MarqueDAO.GetWhereName(treeView1.SelectedNode.Text);
+
+                        UpdateListViewArticleByMarque(marque);
                         break;
                     default:
                         // Affichage de tous les articles d'un sous familles
-                        UpdateListViewArticle();
+                        SousFamille sousFamille = SousFamilleDAO.GetWhereName(treeView1.SelectedNode.Text);
+
+                        UpdateListViewArticleBySousFamille(sousFamille);
                         break;
                 }
             }
@@ -305,7 +311,7 @@ namespace Bacchus
         /// <summary>
         /// Met à jour la listView pour les articles
         /// </summary>
-        public void UpdateListViewArticle()
+        public void UpdateListViewArticle(List<Article> articles)
         {
             listView1.Name = "ArticleListe";
 
@@ -314,7 +320,7 @@ namespace Bacchus
             listView1.Columns.Add("Marque", 100, HorizontalAlignment.Center);
             listView1.Columns.Add("Quantité", 50, HorizontalAlignment.Center);
 
-            List<Article> articles = ArticleDAO.GetAll();
+            //List<Article> articles = ArticleDAO.GetAll();
 
             if (articles.Count > 0)
             {
@@ -322,8 +328,8 @@ namespace Bacchus
                 {
                     var row = new string[]
                     {
-                                    article.Description, article.SousFamille.Nom,
-                                    article.Marque.Nom, article.Quantite.ToString()
+                        article.Description, article.SousFamille.Nom,
+                        article.Marque.Nom, article.Quantite.ToString()
                     };
 
                     var lvi = new ListViewItem(row);
@@ -408,6 +414,27 @@ namespace Bacchus
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Met à jour la listView avec les articles d'une Marque
+        /// </summary>
+        /// <param name="marque">Marque à afficher</param>
+        public void UpdateListViewArticleByMarque(Marque marque)
+        {
+            List<Article> articles = ArticleDAO.GetByMarque(marque);
+            UpdateListViewArticle(articles);
+        }
+
+
+        /// <summary>
+        /// Met à jour la listeView des articles d'une SousMarque
+        /// </summary>
+        /// <param name="sousFamille">SousFamille à afficher</param>
+        public void UpdateListViewArticleBySousFamille(SousFamille sousFamille)
+        {
+            List<Article> articles = ArticleDAO.GetArticleBySousFamille(sousFamille);
+            UpdateListViewArticle(articles);
         }
 
                                         /** Fenetres modales */
