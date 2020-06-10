@@ -86,8 +86,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 287);
-            this.label2.Margin = new System.Windows.Forms.Padding(40, 100, 3, 0);
+            this.label2.Location = new System.Drawing.Point(40, 197);
+            this.label2.Margin = new System.Windows.Forms.Padding(40, 10, 3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(248, 34);
             this.label2.TabIndex = 4;
