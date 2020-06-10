@@ -45,7 +45,7 @@ namespace Bacchus.Controller
                     int firstInt = Convert.ToInt32(firstItem.SubItems[this.SortColumn].Text);
                     int secondInt = Convert.ToInt32(secondItem.SubItems[this.SortColumn].Text);
 
-                    res = firstInt - secondInt;
+                    res = secondInt - firstInt;
                     break;
                 default:
                     // Compare les deux chaines de caractères

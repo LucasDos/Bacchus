@@ -78,6 +78,7 @@ namespace Bacchus
         {
             foreach(Article article in data)
             {
+                
                 ArticleDAO.Insert(article);
                 if(progressBar != null)
                 {

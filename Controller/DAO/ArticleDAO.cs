@@ -39,13 +39,13 @@ namespace Bacchus.DAO
 
                 SQLiteDataReader exists = Database.GetSql("select * from Articles where RefArticle = '" + article.Reference + "';");
 
-                if(!exists.Read())
+                if(exists.Read())
                 {
-                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', '" + sousFamilleReference + "', '" + marqueReference + "', '" + article.Prix + "', '" + article.Quantite + "');");
+                    Database.RunSql("update Articles set Description = '" + article.Description + "', RefSousFamille = '" + sousFamilleReference + "', RefMarque = '" + marqueReference + "', PrixHT = '" + article.Prix + "', Quantite = '" + article.Quantite + "' where RefArticle = '" + article.Reference + "';");
                 }
                 else
                 {
-                    Database.RunSql("update Articles set Description = '" + article.Description + "', RefSousFamille = " + sousFamilleReference + ", RefMarque = " + marqueReference + ", PrixHT = " + Convert.ToInt32(article.Prix) + ", Quantite = " + article.Quantite + " where RefArticle = '" + article.Reference + "';");
+                    Database.RunSql("insert into Articles('RefArticle', 'Description', 'RefSousFamille', 'RefMarque', 'PrixHT', 'Quantite') values('" + article.Reference + "', '" + article.Description + "', '" + sousFamilleReference + "', '" + marqueReference + "', '" + article.Prix + "', '" + article.Quantite + "');");
                 }
 
                 return article.Reference;
@@ -69,7 +69,7 @@ namespace Bacchus.DAO
                 string desc = article.GetString(1);
                 int refSFam = article.GetInt32(2);
                 int refMarque = article.GetInt32(3);
-                // float prix = article.GetFloat(4); Ne fonctionne pas 
+                //float prix = article.GetFloat(4); //Ne fonctionne pas 
                 float prix = Single.Parse(article.GetString(4));
                 int quantite = article.GetInt32(5);
 
