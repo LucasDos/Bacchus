@@ -19,6 +19,7 @@ namespace Bacchus
     {
         // Ordre de trie pour detecter le changement d'ordre
         private SortOrder Order;
+
         public FormMain()
         {
             InitializeComponent();
@@ -77,7 +78,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Ajoute les marques dans le treeView1
+        /// Ajoute les marques dans la treeView1
         /// </summary>
         /// <param name="node">Node "Marques"</param>
         public void AddMarques(TreeNode node)
@@ -93,7 +94,7 @@ namespace Bacchus
                                         /** Controleurs */
 
         /// <summary>
-        /// Detecte le click sur une node de la treeView
+        /// Detecte le clique sur une node de la treeView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,7 +104,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Lucas je sais pas ce que c'est, tu peux mettre cette cartouche de com stp
+        /// Détecte le clique sur le bouton Importer de la ToolStripMenuItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -115,7 +116,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Lucas je sais pas ce que c'est, tu peux mettre cette cartouche de com stp
+        /// Détecte le clique sur le bouton Exporter de la ToolStripMenuItem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -126,7 +127,17 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Detecte les touche tapé dans la listView
+        /// Détecte le clique sur le bouton Actualiser de la ToolStripMenuItem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void actualiserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UpdateListView();
+        }
+
+        /// <summary>
+        /// Détecte les touches tapées dans la listView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -181,7 +192,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Detecte le double clique sur une item de la listView
+        /// Détecte le double clique sur une item de la listView
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -224,7 +235,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Detecte le clique droit de la souris
+        /// Détecte le clique droit de la souris
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -274,7 +285,7 @@ namespace Bacchus
             }
         }
 
-        /** Foction Update */
+                                        /** Foction Update */
         /// <summary>
         /// Met à jour la StripView
         /// </summary>
@@ -287,7 +298,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Met a jour la listView1 pour afficher les articles/familles/SousFamilles/Marques
+        /// Met à jour la listView1 pour afficher les articles/familles/SousFamilles/Marques
         /// </summary>
         public void UpdateListView()
         {
@@ -398,7 +409,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Met à jourla listView pour les Marques
+        /// Met à jour la listView pour les Marques
         /// </summary>
         public void UpdateListViewMarques()
         {
@@ -422,7 +433,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Met à jour la listedes SousFamilles
+        /// Met à jour la listeView pour les SousFamilles
         /// </summary>
         public void UpdateListViewSousFamilles()
         {
@@ -473,7 +484,7 @@ namespace Bacchus
 
                                         /** Fenetres modales */
         /// <summary>
-        /// Modifie un article
+        /// Ouvre une fentre modale de modification d'un article
         /// </summary>
         public void ModifyArticle()
         {
@@ -488,7 +499,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Ouvre une fentre de modification de famille
+        /// Ouvre une fentre modale de modification de famille
         /// </summary>
         public void Modifyfamille()
         {
@@ -502,7 +513,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Ouvre une fenetre de modification de SousFamille
+        /// Ouvre une fenetre modale de modification de SousFamille
         /// </summary>
         public void ModifySousFamille()
         {
@@ -516,7 +527,7 @@ namespace Bacchus
         }
 
         /// <summary>
-        /// Ouvre une fenetre de modification de Marque
+        /// Ouvre une fenetre modale de modification de Marque
         /// </summary>
         public void ModifyMarque()
         {
